@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Working Title</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- linking css for the quote of he day -->
+  <link rel="stylesheet" href="quote-style.css">
+
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1 class="text-center">Working Title</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Form Title</h3>
+          </div>
+          <div class="panel-body">
+
+            <form role="form">
+
+              <div class="form-group">
+                <label for="search">Name?</label>
+                <input type="text" class="form-control" id="?-term">
+              </div>
+
+              <div class="form-group">
+                <label for="pwd">Example of Activities Dropdown</label>
+                <select class="form-control" id="num-records-select">
+                  <option value="1">1</option>
+                  <!-- sets default -->
+                  <option value="5" selected>3</option>
+                  <option value="10">5</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="weight-entry">Weight</label>
+                <input type="text" class="form-control" id="weight-entry">
+              </div>
+
+              <div class="form-group">
+                <label for="?">Input</label>
+                <input type="text" class="form-control" id="end-year">
+              </div>
+
+              <button type="submit" class="btn btn-default" id="submit">Submit</button>
+              <button type="button" class="btn btn-default" id="clear(not made)"> Clear</button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <span id="quote-display">
+      <span style="z-index:50;font-size:0.9em;"><img src="https://theysaidso.com/branding/theysaidso.png" height="20" width="20" alt="theysaidso.com"/><a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com" style="color: #9fcc25; margin-left: 4px; vertical-align: middle;">theysaidso.com</a></span>
+    </span>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+  <!--Javascript source-->
+  <script src="quote-api-logic.js"></script>
+
+</body>
+
+</html>
