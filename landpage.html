@@ -12,15 +12,17 @@
     <script type="text/javascript" src="main.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- Temp CSS sheet, we need a main -->
-    <link rel="stylesheet" href="quote-style.css">
+    <!-- Our CSS sheet -->
+    <link rel="stylesheet" href="style.css">
     
 </head>
 
 <body>
     <div class="container">
         <div class="page-header">
-            <h1>My Health Page <small>Quote of the Day here!</small></h1>
+            <h1>My Health Page </h1>
+            <span id="quote-display"> <img src="https://theysaidso.com/branding/theysaidso.png" id="quote-logo" height="20" width="20" alt="theysaidso.com"/><a id="logo-text" href="https://theysaidso.com" title="Powered by quotes from theysaidso.com">theysaidso.com</a></span>
+           
             <!-- added the zipcode div below just for testing -SB -->
             <div id='zipcode'></div>
         </div>
@@ -97,15 +99,14 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Begins area for chart -->
-        <div id="chart-area">
-            <!-- Size needs to be set in CSS -->
-            <canvas id="myChart" width="100" height="100"></canvas>
+            <!-- Begins area for chart -->
+            <div id="chart-area">
+                <!-- Desired size needs to be set in CSS, ratio changed here -->
+                <canvas id="myChart" width="200" height="100"></canvas>
+            </div>
+        <!-- Close display container -->
         </div>
-    <!-- Close display container -->
-    </div>
 
 </body>
 

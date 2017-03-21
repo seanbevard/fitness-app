@@ -168,6 +168,48 @@ function gameon(element1,element2){
         return false;
     });*/
 
+
+// Logic for sports quote API
+var queryURL = "http://quotes.rest/qod.json?category=sports" 
+      // Performing our AJAX GET request
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+        // After the data comes back from the API
+        .done(function(response) {
+            // Storing an array of results in the results variable
+            var results = response.contents;
+            // Get the quote data from the object
+            var data = results.quotes[0];
+
+            // Check the object returned
+            console.log(data);
+
+
+            // Creating a div with the class "item"
+            var quoteDiv = $("<div class='item'>");
+
+            // Storing the result item's rating
+            var quote = data.quote;
+            var author = data.author;
+
+            // Creating a paragraph tag with the result item's rating
+            var p = $("<p id='quote-item'>").text(quote + " - " + author);
+
+
+            // Appending the paragraph we created 
+            quoteDiv.append(p);
+             
+
+            // Prepending the quoteDiv to the display
+            $("#quote-display").prepend(quoteDiv);
+
+        });
+
+
+
+// When submit button is clicked
 $("#submit-button").on("click", function(event) {
 
     event.preventDefault();
