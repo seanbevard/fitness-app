@@ -1,7 +1,8 @@
-// Initialize Firebase
-// Initialize Firebase
-// Initialize Firebase
 
+// Wrapping function in onload method
+window.onload = function() {
+
+// Initialize Firebase
 var config = {
     apiKey: "AIzaSyAH76zucOcrL9PaMukEWaR6DjNnBytNTyI",
     authDomain: "fitnessdb-3bffe.firebaseapp.com",
@@ -56,6 +57,7 @@ function updateCurrentUsers() {
 
 
 
+
 function writeUserData(userId, name, weight, activity1, activity2, activity3) {
 
     console.log("inside write function");
@@ -77,17 +79,6 @@ function removeUserData(userid) {
     console.log("UserData removed");
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 function getRandomInt(min, max) {
@@ -127,6 +118,7 @@ function assignUniqueId() {
     }
 
 }
+
 //Assign New Id
 /*function pair() {
                 while(unpairedusers.length>=2)
@@ -172,7 +164,50 @@ function gameon(element1,element2){
         return false;
     });*/
 
+
+// Logic for sports quote API
+var queryURL = "http://quotes.rest/qod.json?category=sports" 
+      // Performing our AJAX GET request
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+        // After the data comes back from the API
+        .done(function(response) {
+            // Storing an array of results in the results variable
+            var results = response.contents;
+            // Get the quote data from the object
+            var data = results.quotes[0];
+
+            // Check the object returned
+            console.log(data);
+
+
+            // Creating a div with the class "item"
+            var quoteDiv = $("<div class='item'>");
+
+            // Storing the result item's rating
+            var quote = data.quote;
+            var author = data.author;
+
+            // Creating a paragraph tag with the result item's rating
+            var p = $("<p id='quote-item'>").text(quote + " - " + author);
+
+
+            // Appending the paragraph we created 
+            quoteDiv.append(p);
+             
+
+            // Prepending the quoteDiv to the display
+            $("#quote-display").prepend(quoteDiv);
+
+        });
+
+
+
+// When submit button is clicked
 $("#submit-button").on("click", function(event) {
+
     event.preventDefault();
     alert("clicked");
 
@@ -253,3 +288,57 @@ $.ajax({
 
 
 });
+
+
+// Create dataset for chart from variables
+
+var chartData = {
+    labels:["01-02-17", "01-03-17","01-05-17","01-07-17"],
+    // Need an array returned of each date weight was logged. i.e. 
+           // ["01-02-07", "01-03-17"] or var array
+    datasets: [
+        {
+            data:["120","118","115","114"],
+            // Need array of weights that were input or var array
+            fill: false,
+            backgroundColor: "gold",
+            pointBorderColor: "purple",
+            pointHoverBorderWidth: 2,
+            tension: 0.1,
+
+        }
+    ]
+            
+
+};
+// Different optons to adjust chart created
+var options = {
+
+        title:{
+            display: true,
+            text: "Your Weight Loss Over Time",
+        },
+        legend:{
+            display: false,
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    };
+
+
+// Initialize chart
+var ctx = document.getElementById("myChart");
+
+// Create line chart
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: chartData,
+    options: options
+})
+};
+
