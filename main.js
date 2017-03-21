@@ -14,7 +14,6 @@ firebase.initializeApp(config);
 
 
 
-
 var dataRef = firebase.database();
 var userId = 0;
 var maxusers = 10;
@@ -58,6 +57,7 @@ function updateCurrentUsers() {
 
 
 
+
 function writeUserData(userId, name, weight, activity1, activity2, activity3) {
 
     console.log("inside write function");
@@ -83,7 +83,6 @@ function removeUserData(userid) {
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-
 }
 
 function assignUniqueId() {
@@ -119,9 +118,6 @@ function assignUniqueId() {
     }
 
 }
-
-                                
-
 
 //Assign New Id
 /*function pair() {
@@ -234,7 +230,6 @@ $("#submit-button").on("click", function(event) {
 
 });
 
-                    
 
 
 // var somObj=snapshot.val();
@@ -282,7 +277,6 @@ var session=[];
     }, function(errorObject) {
       console.losomObjg("Errors handled: " + errorObject.code);
     });
-<<<<<<< HEAD
 */
 
 //adding ajax code to get location from IP address -SB
