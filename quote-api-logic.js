@@ -29,11 +29,11 @@
               var p = $("<p id='quote-item'>").text(quote);
 
 
-              // Appending the paragraph and personImage we created to the "gifDiv" div we created
+              // Appending the paragraph we created 
               quoteDiv.append(p);
              
 
-              // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
+              // Prepending the quoteDiv to the display
               $("#quote-display").prepend(quoteDiv);
 
         });
