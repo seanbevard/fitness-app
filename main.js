@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Wrapping function in onload method
 window.onload = function() {
 
@@ -10,10 +11,24 @@ var config = {
     messagingSenderId: "187591330918"
 };
 firebase.initializeApp(config);
+=======
+// Initialize Firebase
+// Initialize Firebase
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAH76zucOcrL9PaMukEWaR6DjNnBytNTyI",
+    authDomain: "fitnessdb-3bffe.firebaseapp.com",
+    databaseURL: "https://fitnessdb-3bffe.firebaseio.com",
+    storageBucket: "fitnessdb-3bffe.appspot.com",
+    messagingSenderId: "187591330918"
+  };
+  firebase.initializeApp(config);
+>>>>>>> 03249c981a8972fd189a9a08e436e7064795749a
 
 
 
 var dataRef = firebase.database();
+<<<<<<< HEAD
 var userId = 0;
 var maxusers = 10;
 var currentusers = [];
@@ -88,10 +103,96 @@ function removeUserData(userid) {
 
 
 
+=======
+var userId =0; 
+var maxusers = 10;
+var currentusers =[];
+var currentusernames =[];
+updateCurrentUsers();
+function updateCurrentUsers()
+{
+                            // Adds values to the currentusers array;
+dataRef.ref().child('users').on("child_added", function(snapshot) {
+
+                                 
+                                 var childData = snapshot.val();
+                                 console.log("snapshot is : " + snapshot.val());
+                                 currentusers.push(childData.userId);
+                                 currentusernames.push(childData.username);
+                                 console.log("currentusers array in child added: " + currentusers);
+                                                                   
+                                                        });
+    
+    
+    
+        
+      
+                                // Removes values from the currentusers array;
+/*dataRef.ref().child('users').on("child_removed", function(snapshot) {
+
+                                 var itemRemoved = snapshot.val().userid;
+                                 console.log("child_removed is : " + itemRemoved);
+                                 console.log("currentusers array in child removed: " + currentusers);
+                                 var index = currentusers.indexOf(itemRemoved);
+                                 currentusers.splice(index, 1);
+                                  removechatpairs(itemRemoved);
+                                    
+                                    
+                      });*/
+}
+ 
+    
+
+                   
+
+
+function writeUserData(userId, name, weight, activity1,activity2,activity3) {
+
+    console.log("inside write function"); 
+
+   dataRef.ref().child('users/'+ userId).set({  
+            
+            userId:userId,
+            username: name,
+       
+            weight:weight,
+
+          activity1: activity1,
+
+           activity2: activity2,
+
+           activity3: activity3
+       
+       
+
+                                                    });
+
+                                                    }
+
+function removeUserData(userid){
+    
+    console.log("inside removeUserData"); 
+   dataRef.ref().child('users/'+ userid).remove() 
+   console.log("UserData removed");
+    
+                        }
+
+
+
+  
+   
+   
+  
+       
+    
+    
+    
+>>>>>>> 03249c981a8972fd189a9a08e436e7064795749a
 
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+<<<<<<< HEAD
 }
 
 function assignUniqueId() {
@@ -127,6 +228,43 @@ function assignUniqueId() {
     }
 
 }
+=======
+                                }
+
+function assignUniqueId() {
+                        var IsValid = false;
+                        while (IsValid == false) {
+                                    var Id = getRandomInt(1, maxusers);
+                                    console.log("id is:" + Id);
+                                    function checkuserId(presentId) {
+                                                            console.log("id is:" + Id+" presentId is: "+presentId);
+                                                            //return Id != presentId;
+                                                            if(Id==presentId)return false;
+                                                            else return true;
+                                                                    }
+                                    
+                                    console.log("currentusers in assignunique id is : " + currentusers);
+                                     var result = currentusers.every(checkuserId);
+                                    console.log("currentusers.every(checkuserId) = " + result);
+                                    if (result == true) {
+                                                console.log("new id is : " + Id);
+                                                userId=Id;
+                                                writeUserData (Id, $('#name').val(), $('#weight-entry').val(), 'running','swimming','skating');
+                                                IsValid = true;
+                                                        }
+                                    else {
+                                                console.log("uh oh id is duplicated :" + Id);
+                                                if (currentusers.length == maxusers) {
+                                                            console.log("max no of users reached");
+                                                            IsValid = true;
+                                                                                }
+                                         }
+
+
+                                                    }
+
+                        }
+>>>>>>> 03249c981a8972fd189a9a08e436e7064795749a
 //Assign New Id
 /*function pair() {
                 while(unpairedusers.length>=2)
@@ -151,7 +289,11 @@ function gameon(element1,element2){
                 
                 
                 }*/
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 03249c981a8972fd189a9a08e436e7064795749a
 /*$("##send-button").on("click", function(event) {
 
                            event.preventDefault();
@@ -161,7 +303,11 @@ function gameon(element1,element2){
                                           });
                                                     });*/
 
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 03249c981a8972fd189a9a08e436e7064795749a
 /*$(window).on('beforeunload', function ()
     {    
     
@@ -173,6 +319,7 @@ function gameon(element1,element2){
     });*/
 
 $("#submit-button").on("click", function(event) {
+<<<<<<< HEAD
     event.preventDefault();
     alert("clicked");
 
@@ -196,6 +343,30 @@ $("#submit-button").on("click", function(event) {
 });
 
 
+=======
+                             event.preventDefault();
+                            alert("clicked");
+                            function checkuserId(presentId) {
+                                                            console.log("id is:" + $('#name').val()+" presentId is: "+presentId);
+                                                            //return Id != presentId;
+                                                            if($('#name').val()==presentId)return false;
+                                                            else return true;
+                                                                    }
+                             var uniqueusername =currentusernames.every(checkuserId);
+                            if(uniqueusername==true)
+                                assignUniqueId()   ;
+                            else
+                            {alert("username already in use.....plz use a diff userid");
+                             location.reload();
+                            }
+                           
+                            
+                            
+                          
+   });
+
+                    
+>>>>>>> 03249c981a8972fd189a9a08e436e7064795749a
 
 // var somObj=snapshot.val();
 //  console.log("snapshot is : " + snapshot);
@@ -242,6 +413,7 @@ var session=[];
     }, function(errorObject) {
       console.losomObjg("Errors handled: " + errorObject.code);
     });
+<<<<<<< HEAD
 */
 
 //adding ajax code to get location from IP address -SB
@@ -306,3 +478,6 @@ var myChart = new Chart(ctx, {
     options: options
 });
 };
+=======
+*/
+>>>>>>> 03249c981a8972fd189a9a08e436e7064795749a
