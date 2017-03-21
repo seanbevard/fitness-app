@@ -7,12 +7,13 @@
     <!--   Added link to jquery library, js file and firebase -SB -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    <!-- CDN for charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- CDN for charts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js">
-</script>
+    <link rel="stylesheet" href="quote-style.css">
+    
 </head>
 
 <body>
@@ -96,10 +97,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Begins and sets area for chart -->
 
-    <canvas id="myChart" width="100" height="100"></canvas>
+        <!-- Begins area for chart -->
+        <div id="chart-area">
+            <!-- Size needs to be set in CSS -->
+            <canvas id="myChart" width="100" height="100"></canvas>
+        </div>
+    <!-- Close display container -->
+    </div>
 
 </body>
 

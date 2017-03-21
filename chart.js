@@ -36,14 +36,14 @@ var options = {
                 }
             }]
         }
-    }
+    };
 
 
 // Initialize chart
 var ctx = document.getElementById("myChart");
 
 // Create line chart
-var myChart = new Chart(ctx, {
+var myChart = new Chart(ctx,{
 	type: 'line',
     data: data,
     options: options
