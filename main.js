@@ -1,140 +1,132 @@
 // Initialize Firebase
 // Initialize Firebase
 // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAH76zucOcrL9PaMukEWaR6DjNnBytNTyI",
-    authDomain: "fitnessdb-3bffe.firebaseapp.com",
-    databaseURL: "https://fitnessdb-3bffe.firebaseio.com",
-    storageBucket: "fitnessdb-3bffe.appspot.com",
-    messagingSenderId: "187591330918"
-  };
-  firebase.initializeApp(config);
+
+var config = {
+    apiKey: "AIzaSyAH76zucOcrL9PaMukEWaR6DjNnBytNTyI",
+    authDomain: "fitnessdb-3bffe.firebaseapp.com",
+    databaseURL: "https://fitnessdb-3bffe.firebaseio.com",
+    storageBucket: "fitnessdb-3bffe.appspot.com",
+    messagingSenderId: "187591330918"
+};
+firebase.initializeApp(config);
 
 
 
 var dataRef = firebase.database();
-var userId =0; 
+var userId = 0;
 var maxusers = 10;
-var currentusers =[];
-var currentusernames =[];
+var currentusers = [];
+var currentusernames = [];
 updateCurrentUsers();
-function updateCurrentUsers()
-{
-                            // Adds values to the currentusers array;
-dataRef.ref().child('users').on("child_added", function(snapshot) {
 
-                                 
-                                 var childData = snapshot.val();
-                                 console.log("snapshot is : " + snapshot.val());
-                                 currentusers.push(childData.userId);
-                                 currentusernames.push(childData.username);
-                                 console.log("currentusers array in child added: " + currentusers);
-                                                                   
-                                                        });
-    
-    
-    
-        
-      
-                                // Removes values from the currentusers array;
-/*dataRef.ref().child('users').on("child_removed", function(snapshot) {
+function updateCurrentUsers() {
+    // Adds values to the currentusers array;
+    dataRef.ref().child('users').on("child_added", function(snapshot) {
 
-                                 var itemRemoved = snapshot.val().userid;
-                                 console.log("child_removed is : " + itemRemoved);
-                                 console.log("currentusers array in child removed: " + currentusers);
-                                 var index = currentusers.indexOf(itemRemoved);
-                                 currentusers.splice(index, 1);
-                                  removechatpairs(itemRemoved);
-                                    
-                                    
-                      });*/
+
+        var childData = snapshot.val();
+        console.log("snapshot is : " + snapshot.val());
+        currentusers.push(childData.userId);
+        currentusernames.push(childData.username);
+        console.log("currentusers array in child added: " + currentusers);
+
+    });
+
+
+
+
+
+    // Removes values from the currentusers array;
+    /*dataRef.ref().child('users').on("child_removed", function(snapshot) {
+
+                                     var itemRemoved = snapshot.val().userid;
+                                     console.log("child_removed is : " + itemRemoved);
+                                     console.log("currentusers array in child removed: " + currentusers);
+                                     var index = currentusers.indexOf(itemRemoved);
+                                     currentusers.splice(index, 1);
+                                      removechatpairs(itemRemoved);
+                                        
+                                        
+                          });*/
 }
- 
-    
-
-                   
 
 
-function writeUserData(userId, name, weight, activity1,activity2,activity3) {
 
-    console.log("inside write function"); 
 
-   dataRef.ref().child('users/'+ userId).set({  
-            
-            userId:userId,
-            username: name,
-       
-            weight:weight,
 
-          activity1: activity1,
 
-           activity2: activity2,
+function writeUserData(userId, name, weight, activity1, activity2, activity3) {
 
-           activity3: activity3
-       
-       
+    console.log("inside write function");
+    dataRef.ref().child('users/' + userId).set({
+        userId: userId,
+        username: name,
+        weight: weight,
+        activity1: activity1,
+        activity2: activity2,
+        activity3: activity3
+    });
 
-                                                    });
+}
 
-                                                    }
+function removeUserData(userid) {
 
-function removeUserData(userid){
-    
     console.log("inside removeUserData"); 
-   dataRef.ref().child('users/'+ userid).remove() 
-   console.log("UserData removed");
-    
-                        }
+    dataRef.ref().child('users/' + userid).remove()
+    console.log("UserData removed");
+
+}
 
 
 
-  
-   
-   
-  
-       
-    
-    
-    
+
+
+
+
+
+
+
+
 
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-                                }
+}
 
 function assignUniqueId() {
-                        var IsValid = false;
-                        while (IsValid == false) {
-                                    var Id = getRandomInt(1, maxusers);
-                                    console.log("id is:" + Id);
-                                    function checkuserId(presentId) {
-                                                            console.log("id is:" + Id+" presentId is: "+presentId);
-                                                            //return Id != presentId;
-                                                            if(Id==presentId)return false;
-                                                            else return true;
-                                                                    }
-                                    
-                                    console.log("currentusers in assignunique id is : " + currentusers);
-                                     var result = currentusers.every(checkuserId);
-                                    console.log("currentusers.every(checkuserId) = " + result);
-                                    if (result == true) {
-                                                console.log("new id is : " + Id);
-                                                userId=Id;
-                                                writeUserData (Id, $('#name').val(), $('#weight-entry').val(), 'running','swimming','skating');
-                                                IsValid = true;
-                                                        }
-                                    else {
-                                                console.log("uh oh id is duplicated :" + Id);
-                                                if (currentusers.length == maxusers) {
-                                                            console.log("max no of users reached");
-                                                            IsValid = true;
-                                                                                }
-                                         }
+    var IsValid = false;
+    while (IsValid == false) {
+        var Id = getRandomInt(1, maxusers);
+        console.log("id is:" + Id);
+
+        function checkuserId(presentId) {
+            console.log("id is:" + Id + " presentId is: " + presentId);
+            //return Id != presentId;
+            if (Id == presentId) return false;
+            else return true;
+        }
+
+        console.log("currentusers in assignunique id is : " + currentusers);
+        var result = currentusers.every(checkuserId);
+        console.log("currentusers.every(checkuserId) = " + result);
+        if (result == true) {
+            console.log("new id is : " + Id);
+            userId = Id;
+            writeUserData(Id, $('#name').val(), $('#weight-entry').val(), 'running', 'swimming', 'skating');
+            IsValid = true;
+        } else {
+            console.log("uh oh id is duplicated :" + Id);
+            if (currentusers.length == maxusers) {
+                console.log("max no of users reached");
+                IsValid = true;
+            }
+        }
 
 
-                                                    }
+    }
 
-                        }
+}
 //Assign New Id
 /*function pair() {
                 while(unpairedusers.length>=2)
@@ -159,7 +151,7 @@ function gameon(element1,element2){
                 
                 
                 }*/
-    
+
 /*$("##send-button").on("click", function(event) {
 
                            event.preventDefault();
@@ -169,7 +161,7 @@ function gameon(element1,element2){
                                           });
                                                     });*/
 
-      
+
 /*$(window).on('beforeunload', function ()
     {    
     
@@ -181,28 +173,29 @@ function gameon(element1,element2){
     });*/
 
 $("#submit-button").on("click", function(event) {
-                             event.preventDefault();
-                            alert("clicked");
-                            function checkuserId(presentId) {
-                                                            console.log("id is:" + $('#name').val()+" presentId is: "+presentId);
-                                                            //return Id != presentId;
-                                                            if($('#name').val()==presentId)return false;
-                                                            else return true;
-                                                                    }
-                             var uniqueusername =currentusernames.every(checkuserId);
-                            if(uniqueusername==true)
-                                assignUniqueId()   ;
-                            else
-                            {alert("username already in use.....plz use a diff userid");
-                             location.reload();
-                            }
-                           
-                            
-                            
-                          
-   });
+    event.preventDefault();
+    alert("clicked");
 
-                    
+    function checkuserId(presentId) {
+        console.log("id is:" + $('#name').val() + " presentId is: " + presentId);
+        //return Id != presentId;
+        if ($('#name').val() == presentId) return false;
+        else return true;
+    }
+    var uniqueusername = currentusernames.every(checkuserId);
+    if (uniqueusername == true)
+        assignUniqueId();
+    else {
+        alert("username already in use.....plz use a diff userid");
+        location.reload();
+    }
+
+
+
+
+});
+
+
 
 // var somObj=snapshot.val();
 //  console.log("snapshot is : " + snapshot);
@@ -250,3 +243,13 @@ var session=[];
       console.losomObjg("Errors handled: " + errorObject.code);
     });
 */
+
+//adding ajax code to get location from IP address -SB
+$.ajax({
+    url: 'http://freegeoip.net/json/',
+    method: 'GET'
+}).done(function(location) {
+    $('#zipcode').html("Your Current Zip Code is: " + location.zip_code + " in " + location.city + ", " + location.region_code);
+
+
+});
