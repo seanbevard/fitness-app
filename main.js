@@ -2,12 +2,14 @@
 // Initialize Firebase
 // Initialize Firebase
 var config = {
-apiKey: "AIzaSyAH76zucOcrL9PaMukEWaR6DjNnBytNTyI",
-authDomain: "fitnessdb-3bffe.firebaseapp.com",
-databaseURL: "https://fitnessdb-3bffe.firebaseio.com",
-storageBucket: "fitnessdb-3bffe.appspot.com",
-messagingSenderId: "187591330918"
-};
+    apiKey: "AIzaSyBH2i1Tv_Ih6bnw1WTPICvUWP8HhtF3RFo",
+    authDomain: "fitnessapp-b2272.firebaseapp.com",
+    databaseURL: "https://fitnessapp-b2272.firebaseio.com",
+    storageBucket: "fitnessapp-b2272.appspot.com",
+    messagingSenderId: "472516374433"
+  };
+
+
 firebase.initializeApp(config);
 
 var dataRef = firebase.database();
