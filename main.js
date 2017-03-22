@@ -1,173 +1,293 @@
-// Wrapping function in onload method
 window.onload = function() {
-
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyAH76zucOcrL9PaMukEWaR6DjNnBytNTyI",
-        authDomain: "fitnessdb-3bffe.firebaseapp.com",
-        databaseURL: "https://fitnessdb-3bffe.firebaseio.com",
-        storageBucket: "fitnessdb-3bffe.appspot.com",
-        messagingSenderId: "187591330918"
-    };
-    firebase.initializeApp(config);
-
-    //variables to store data pulled from Geolocation API -SB
-    var usersZipCode;
-    var usersCity;
-    var usersLongitude;
-    var usersLatitude;
-    var usersState;
-    var usersChanceOfRain;
-
-    var dataRef = firebase.database();
-    var userId = 0;
-    var maxusers = 10;
-    var currentusers = [];
-    var currentusernames = [];
-    updateCurrentUsers();
-
-    function updateCurrentUsers() {
-        // Adds values to the currentusers array;
-        dataRef.ref().child('users').on("child_added", function(snapshot) {
+var config = {
+    apiKey: "AIzaSyBH2i1Tv_Ih6bnw1WTPICvUWP8HhtF3RFo",
+    authDomain: "fitnessapp-b2272.firebaseapp.com",
+    databaseURL: "https://fitnessapp-b2272.firebaseio.com",
+    storageBucket: "fitnessapp-b2272.appspot.com",
+    messagingSenderId: "472516374433"
+  };
 
 
-            var childData = snapshot.val();
-            console.log("snapshot is : " + snapshot.val());
-            currentusers.push(childData.userId);
-            currentusernames.push(childData.username);
-            console.log("currentusers array in child added: " + currentusers);
+firebase.initializeApp(config);
 
-        });
+var dataRef = firebase.database();
+var currentusernames =[];
+var currentdata=[];
+var kayak=false;
+var weighttraining=false;
+var bootcamp=false;
+var tennis=false;
+var treadmill=false;
+var dance=false;
+var yoga=false;
+var spinning=false;
+var aerobics=false;
+var roller=false;
+var cycle=false;
+var running=false;
+var swim=false;
+var hike = false;
+//var username='';
+//variables to store data pulled from Geolocation API -SB
+var usersZipCode;
+var usersCity;
+var usersLongitude;
+var usersLatitude;
+var usersState;
+var usersChanceOfRain;
+//Updating current users
 
+dataRef.ref().child('users').on("child_added", function(snapshot) {
+    childData = snapshot.val();
+    currentusernames.push(childData.username);
+    currentdata.push(childData);
+    console.log("hi baby");
+});
 
-
-
-
-        // Removes values from the currentusers array;
-        /*dataRef.ref().child('users').on("child_removed", function(snapshot) {
-
-                                         var itemRemoved = snapshot.val().userid;
-                                         console.log("child_removed is : " + itemRemoved);
-                                         console.log("currentusers array in child removed: " + currentusers);
-                                         var index = currentusers.indexOf(itemRemoved);
-                                         currentusers.splice(index, 1);
-                                          removechatpairs(itemRemoved);
-                                            
-                                            
-                              });*/
-    }
-
-
-
-
-
-
-
-    function writeUserData(userId, name, weight, activity1, activity2, activity3) {
-
-        console.log("inside write function");
-        dataRef.ref().child('users/' + userId).set({
-            userId: userId,
-            username: name,
-            weight: weight,
-            activity1: activity1,
-            activity2: activity2,
-            activity3: activity3
-        });
-
-    }
-
-    function removeUserData(userid) {
-
-        console.log("inside removeUserData"); 
-        dataRef.ref().child('users/' + userid).remove()
-        console.log("UserData removed");
-
-    }
-
-
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function assignUniqueId() {
-        var IsValid = false;
-        while (IsValid == false) {
-            var Id = getRandomInt(1, maxusers);
-            console.log("id is:" + Id);
-
-            function checkuserId(presentId) {
-                console.log("id is:" + Id + " presentId is: " + presentId);
-                //return Id != presentId;
-                if (Id == presentId) return false;
-                else return true;
-            }
-
-            console.log("currentusers in assignunique id is : " + currentusers);
-            var result = currentusers.every(checkuserId);
-            console.log("currentusers.every(checkuserId) = " + result);
-            if (result == true) {
-                console.log("new id is : " + Id);
-                userId = Id;
-                writeUserData(Id, $('#name').val(), $('#weight-entry').val(), 'running', 'swimming', 'skating');
-                IsValid = true;
-            } else {
-                console.log("uh oh id is duplicated :" + Id);
-                if (currentusers.length == maxusers) {
-                    console.log("max no of users reached");
-                    IsValid = true;
-                }
-            }
-
-
-        }
-
-    }
-
-    //Assign New Id
-    /*function pair() {
-                    while(unpairedusers.length>=2)
-                    {
-                       var element1 = unpairedusers.pop();
-                       var element2=unpairedusers.pop();
-                       gameon(element1,element2);        
-
-                    }
+ 
+//Retrieving data from database
+   function getuserinfo()
+    {
+    var username=localStorage.getItem("username");
         
-    function gameon(element1,element2){
-                        
-                      dataRef.ref().child('users/'+ element1).set({  
-                           opponent : element2;
-                           chathistory : '';
-                                              });
-                     dataRef.ref().child('users/'+ element2).set({  
-                           opponent : element1;
-                           chathistory : '';
-                                              });
-                    
-                    
-                    
-                    }*/
-
-    /*$("##send-button").on("click", function(event) {
-
-                               event.preventDefault();
-                               console.log($('#send-button').val());
-                               dataRef.ref().child('users/'+ myId).set({
-                               chathistory : 'whatever is captured'
-                                              });
-                                                        });*/
-
-
-    /*$(window).on('beforeunload', function ()
-        {    
         
-            removeUserData(userId);
+        var userobj=currentdata[currentusernames.indexOf(username)];
+        console.log(userobj);
+    }
+    /*var childData = snapshot.val();
+    if(childData.username==);
+    
+    interests.push(childData.username);
+    interests.push(childData.targetweight);
+    interests.push(childData.weight);
+    
+    
+    if(childData.kayak=='true')
+        (interests.push('kayak'));
+    if(childData.dance=='true')
+        (interests.push('dance'));
+    if(childData.yoga=='true')
+        (interests.push('yoga'));
+     if(childData.spinning=='true')
+        (interests.push('spinning'));
+    if(childData.aerobics=='true')
+        (interests.push('aerobics'));
+    if(childData.roller=='true')
+        (interests.push('rollerblading'));
+     if(childData.cycle=='true')
+        (interests.push('cycle'));
+    if(childData.running=='true')
+        (interests.push('running'));
+    if(childData.swim=='true')
+        (interests.push('swim'));
+     if(childData.hike=='true')
+        (interests.push('hike'));
+    if(childData.treadmill=='true')
+        (interests.push('treadmill'));
+    if(childData.bootcamp=='yoga')
+        (interests.push('bootcamp'));
+    if(childData.tennis=='true')
+        (interests.push('tennis'));
+    if(childData.weights=='yoga')
+        (interests.push('weights'));
+});*/
+
+
+
+function writeUserData() {
+
+    dataRef.ref().child('users/'+$('#name').val()).set({  
+
+        
+    
+        username     : $('#name').val(),
+        
+        targetweight : $('#target-weight-entry').val(),
+
+        weight       : $('#weight-entry').val(),
             
-           
-           alert("hi");
-            return false;
-        });*/
+        indooractivities: {
+            
+            dance        : dance,
+
+            yoga         : yoga,
+
+            spinning     : spinning,
+
+            aerobics     : aerobics,
+                
+            treadmill    : treadmill,
+
+            bootcamp     : bootcamp,
+                
+            weights      : weighttraining
+
+         },
+   
+         outdooractivities: {
+
+            kayak        : kayak,
+
+            roller       : roller,
+
+            cycle        : cycle,
+
+            running      : running,
+
+            swim         : swim,
+
+            hike         : hike,
+
+            tennis       : tennis
+
+         },
+        
+        weighinno        : 1,
+             
+         weighin          :   {
+             
+             1:              {
+                 weight: $('#weight-entry').val(),
+                 date  : '01-07-2017',
+                 activity: '',
+                 duration:0,
+                 
+             }
+         } 
+    
+
+    }); 
+
+}
+
+//function to set new weighins
+/*dataRef.ref().child('users/bye/weighin').push().set({
+    
+  weight: "98",
+  date: "10-09-2017"
+});*/
+
+
+
+
+$("#submit-button").on("click", function(event) {
+      event.preventDefault();
+    if($('#name').val()=='')
+    {alert("Username cannot be Empty");
+        return false;}
+        
+    
+  
+     
+     //getuserinfo();
+    
+    if($("#hiking").prop('checked'))
+        hike = true;
+
+    if($("#tennis").prop('checked'))
+        tennis = true;
+
+    if($("#bootcamp").prop('checked'))
+        bootcamp = true;
+
+    if($("#treadmill").prop('checked'))
+        treadmill = true;
+
+    if($("#weight").prop('checked'))
+        weighttraining = true;
+
+    if($("#swimming").prop('checked'))
+        swim= true;
+
+    if($("#kayaking").prop('checked'))
+       kayak = true;
+
+    if($("#dancing").prop('checked'))
+       dance= true;
+
+    if($("#yoga").prop('checked'))
+       yoga = true;
+
+    if($("#spinning").prop('checked'))
+       spinning = true;
+
+    if($("#aerobics").prop('checked'))
+      aerobics = true;
+
+    if($("#rollerblading").prop('checked'))
+      roller = true;
+
+    if($("#cycling").prop('checked'))
+      cycle = true;
+
+    if($("#running").prop('checked'))
+      running = true;
+
+    if (validateUsername($('#name').val()))
+        {
+        writeUserData();
+        window.open("landpage.html");
+        }
+    else
+        {   
+        alert("user already exists....please use a different username");  
+        location.reload(true);
+        }
+});
+
+                       
+                       
+function validateUsername(name){
+    
+    function checkuserName(presentName) {
+
+        if(name==presentName)return false;
+        else return true;
+    }
+
+    var uniqueusername =currentusernames.every(checkuserName);
+    
+    if(uniqueusername==true)
+    return true;
+    else
+    return false;
+
+
+}
+    
+    
+ //Check if username is already in use.
+
+
+
+
+$("#submit-username").on("click", function(event) {
+    
+    event.preventDefault();
+    username= ($('#userName').val());
+    
+    if(validateUsername($('#userName').val()))
+   
+        alert("You are not registered, please sign up");
+    
+    else
+       
+        {
+            localStorage.setItem("username", username);
+            window.open("landpage.html"); 
+         
+            
+        }
+        
+});
+
+
+$("#signup-new-user").on("click", function(event) {
+
+    window.open("signup.html");                
+
+});
+
 
 
     // Logic for sports quote API
@@ -208,81 +328,6 @@ window.onload = function() {
 
         });
 
-
-
-    // When submit button is clicked
-    $("#submit-button").on("click", function(event) {
-
-        event.preventDefault();
-        alert("clicked");
-
-        function checkuserId(presentId) {
-            console.log("id is:" + $('#name').val() + " presentId is: " + presentId);
-            //return Id != presentId;
-            if ($('#name').val() == presentId) return false;
-            else return true;
-        }
-        var uniqueusername = currentusernames.every(checkuserId);
-        if (uniqueusername == true)
-            assignUniqueId();
-        else {
-            alert("username already in use.....plz use a diff userid");
-            location.reload();
-        }
-
-
-
-
-    });
-
-
-
-    // var somObj=snapshot.val();
-    //  console.log("snapshot is : " + snapshot);
-    // console.log("snapshot.val() is : " + snapshot.val());
-    //  console.log("snapshot.users is : " + snapshot.val().username );
-    //currentusers.push(somObj.users.1);
-    //  console.log("currentusers is " + currentusers);
-
-
-
-
-    /*var pairedusers=[];
-    var unpairedusers=[];
-    var session=[];
-     dataRef.ref().on("child_added", function(snapshot) {
-          var somObj=snapshot.val();
-         currentusers.push(somObj.name);
-         
-       
-        console.log("currentusers is "+currentusers);
-         
-         
-        
-         
-        if(somObj.paired==false)
-        {
-            unpairedusers.push(somObj.name);
-            
-            
-        }
-         else
-        pairedusers.push(somObj.name);
-         
-       });   
-         if(unpairedusers.length>1)
-             for (var i =0;i<(unpairedusers.length-1);i=i+2)
-             {   dataRef.ref().on("value", function(snapshot) {
-                 unpairedusers[i];unpairedusers[i+1]}
-             console.log(somObj);
-       console.log(somObj.name);
-          console.log(somObj.wins);
-          console.log(somObj.losses);
-          
-        }, function(errorObject) {
-          console.losomObjg("Errors handled: " + errorObject.code);
-        });
-    */
 
     //adding ajax code to get location from IP address -SB
     //also now pulling latitude/longitude to pass it to DarkSky (weather) -SB
@@ -371,3 +416,4 @@ window.onload = function() {
         options: options
     })
 };
+

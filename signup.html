@@ -1,144 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-  <html>
-      <head>
-         <meta charset="UTF-8">
-         <!-- If IE use the latest rendering engine -->
-         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-         <meta name="viewport" content="width=device-width,initial-scale=1">
-         <title>title</title>
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-         <!-- Optional theme -->
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-         <link rel="stylesheet" href="assets/stylesheet.css" type="text/css">
-         <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
- 
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- If IE use the latest rendering engine -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>title</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/stylesheet.css" type="text/css">
+<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
 
-   
 
-  </head>
+
+
+</head>
 
 
 
 <body>
 
- <!-- Main Bootstrap Search -->
- <div class="container">
+<!-- Main Bootstrap Search -->
+<div class="container">
 
-   <!-- Jumbotron for Title -->
-   <div class="jumbotron">
-     <h1 class="text-center">Signup Page</h1>
-   </div>
+<!-- Jumbotron for Title -->
+<div class="jumbotron">
+<h1 class="text-center">Signup Page</h1>
+</div>
 
-   <!-- Row for Searching New York Times -->
-   <div class="row">
-     <div class="col-sm-12">
-       <br>
-       <!-- First panel is for handling the search parameters -->
-       <div class="panel panel-primary">
-         <div class="panel-heading">
-           <h3 class="panel-title">Form Title</h3>
-         </div>
-         <div class="panel-body">
+<!-- Row for Searching New York Times -->
+<div class="row">
+<div class="col-sm-12">
+<br>
+<!-- First panel is for handling the search parameters -->
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title">Form Title</h3>
+</div>
+<div class="panel-body">
 
-           <!-- Here we create an HTML Form for handling the inputs-->
-           <form role="form">
+<!-- Here we create an HTML Form for handling the inputs-->
+<form role="form">
 
-             <!-- Here we create the text box for capturing the search term-->
-             <div class="form-group">
-               <label for="search">Username</label>
-               <input type="text" class="form-control" id="name">
-             </div>
+<!-- Here we create the text box for capturing the search term-->
+<div class="form-group">
+<label for="search">Username</label>
+<input type="text" class="form-control" id="name">
+</div>
 
-             <!-- Here we capture the number of records that the user wants to retrieve  -->
-           <div class="form-group">
-               <label for="weight-entry">Weight</label>
-               <input type="text" class="form-control" id="weight-entry">
-             </div>
+<!-- Here we capture the number of records that the user wants to retrieve  -->
+<div class="form-group">
+<label for="weight-entry">Weight</label>
+<input type="text" class="form-control" id="weight-entry">
+</div>
 
 
-             <!-- Here we capture the Start Year Parameter-->
-             <div class="form-group">
-               <label for="weight-entry">Target Weight</label>
-               <input type="text" class="form-control" id="target-weight-entry">
-             </div>
+<!-- Here we capture the Start Year Parameter-->
+<div class="form-group">
+<label for="weight-entry">Target Weight</label>
+<input type="text" class="form-control" id="target-weight-entry">
+</div>
 
-             <!-- Here we capture the End Year Parameter -->
-             <div class="form-group">
-              <div class="row">
-  <div class="col-lg-6">
-       <label for="search">Choose your favourite activities</label>
-    <div class="input-group">
-      <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Hiking">Hiking</label>
-      </span>
-      
-    <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Running">Running</label>
-      </span>
-        
-        <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Cycling">Cycling</label>
-      </span>
-        
-        <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Swimming">Swimming</label>
-      </span>
-        <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Hiking">Hiking</label>
-      </span>
-      
-    <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Dancing">Dancing</label>
-      </span>
-        
-        <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Spinning">Spinning</label>
-      </span>
-        
-        <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Yoga">Yoga</label>
-      </span>
-        <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Aerobics">Aerobics</label>
-      </span>
-        <span class="input-group-addon">
-        <input type="checkbox" aria-label="...">
-          <label for="Rollerblading">Rollerblading</label>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-                  
-  
+<!-- Here we capture the End Year Parameter -->
+<div class="form-group">
+<div class="row">
+<div class="col-lg-6 ">
+<label for="search">Choose your favourite activities</label>
+
+<div class="input-group ">
+<div class ="row">
+<span class="input-group-addon">
+<input type="checkbox" id="hiking" aria-label="...">
+<label for="Hiking">Hiking</label>
+</span>
+
+<span class="input-group-addon">
+<input type="checkbox" id="running" aria-label="...">
+<label for="Running">Running</label>
+</span>
+
+<span class="input-group-addon">
+<input type="checkbox" id="cycling" aria-label="...">
+<label for="Cycling">Cycling</label>
+</span>
+
+<span class="input-group-addon">
+<input type="checkbox"id="swimming" aria-label="...">
+<label for="Swimming">Swimming</label>
+</span>
+<span class="input-group-addon">
+<input type="checkbox" id="kayaking"aria-label="...">
+<label for="Kayaking">Kayaking</label>
+</span>
+
+<span class="input-group-addon">
+<input type="checkbox" id="dancing" aria-label="...">
+<label for="Dancing">Dancing</label>
+</span>
+
+<span class="input-group-addon">
+<input type="checkbox" id="spinning" aria-label="...">
+<label for="Spinning">Spinning</label>
+</span>
+</div>
+<div class="row">
+<span class="input-group-addon">
+<input type="checkbox"id="yoga" aria-label="...">
+<label for="Yoga">Yoga</label>
+</span>
+<span class="input-group-addon">
+<input type="checkbox" id="aerobics"aria-label="...">
+<label for="Aerobics">Aerobics</label>
+</span>
+<span class="input-group-addon">
+<input type="checkbox" id="rollerblading"aria-label="...">
+<label for="Rollerblading">Rollerblading</label>
+</span>
+
+<span class="input-group-addon">
+<input type="checkbox" id="treadmill"aria-label="...">
+<label for="Treadmill">Treadmill</label>
+</span>
+<span class="input-group-addon">
+<input type="checkbox" id="bootcamp"aria-label="...">
+<label for="bootcamp">Bootcamp</label>
+</span>
+<span class="input-group-addon">
+<input type="checkbox" id="weight"aria-label="...">
+<label for="Weighttraining">Weight training</label>
+</span>
+<span class="input-group-addon">
+<input type="checkbox" id="tennis"aria-label="...">
+<label for="Tennis">Tennis</label>
+</span>
+</div>
+</div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+
+
 </div><!-- /.row -->
-             </div>
+</div>
 
-             <!-- Here we have our final submit button -->
-             <button type="submit" class="btn btn-default" id="submit-button">Submit</button>
-             <button type="button" class="btn btn-default" id="clear(not made)"> Clear</button>
+<!-- Here we have our final submit button -->
+<button type="submit" class="btn btn-default" id="submit-button" >Submit</button>
+<button type="button" class="btn btn-default" id="clear(not made)"> Clear</button>
 
-           </form>
-         </div>
-       </div>
-     </div>
-   </div>
+</form>
+</div>
+</div>
+</div>
+</div>
 
 
-         <!-- Latest compiled and minified JavaScript -->
-         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-         <script src="main.js" type="text/javascript"></script>
-     
-    </div>
-    </body>
-    
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="main.js" type="text/javascript"></script>
+
+</div>
+</body>
+
 </html>
