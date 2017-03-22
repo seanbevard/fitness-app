@@ -159,11 +159,19 @@ function writeUserData() {
 });*/
 
 
+
+
+
 $("#submit-button").on("click", function(event) {
+      event.preventDefault();
+    if($('#name').val()=='')
+    {alert("Username cannot be Empty");
+        return false;}
+        
     
-    event.preventDefault();
+  
      
-     getuserinfo();
+     //getuserinfo();
     
     if($("#hiking").prop('checked'))
         hike = true;
