@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Class Project1</title>
+    <!--     Added charset below so that the 'degrees' symbol displays correctly -SB -->
+    <meta charset="utf-8">
+    <meta name="generator" content="BBEdit 11.6" />
+    <!--   Added link to jquery library, js file and firebase -SB -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+    <!-- CDN for charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    <!-- Main JS file -->
+    <script type="text/javascript" src="main.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Our CSS sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>My Health Page </h1>
+            <span id="quote-display"> <img src="https://theysaidso.com/branding/theysaidso.png" id="quote-logo" height="20" width="20" alt="theysaidso.com"/><a id="logo-text" href="https://theysaidso.com" title="Powered by quotes from theysaidso.com">theysaidso.com</a></span>
+            <!-- added the zipcode div below just for testing -SB -->
+            <div id='zipcode'></div>
+        </div>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="date-input">Date</label>
+                <input type="date" class="form-control" id="date-input" placeholder="Date">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="weight-input">Weight</label>
+                <input type="weight" class="form-control" id="weight-input" placeholder="Weight">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="activity-input">Activity</label>
+                <input type="activity" class="form-control" id="activity-input" placeholder="Activity">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="duration-input">Duration</label>
+                <input type="duration" class="form-control" id="duration-input" placeholder="Duration">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <br> </br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel panel-primary" style="border-color: gold">
+                        <div class="panel-heading" style="background-color: gold; border-bottom:gold; color:purple">
+                            <h3 class="panel-title"><strong>Week Stats</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover" id='week-stats-table' style="color:purple">
+                                <thead>
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Weight</th>
+                                        <th>Activity</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary" style="border-color: gold">
+                        <div class="panel-heading" style="background-color: gold; border-bottom:gold; color:purple">
+                            <h3 class="panel-title"><strong>Weekly Stats</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover" id='weekly-stats-table' style="color:purple">
+                                <thead>
+                                    <tr>
+                                        <th>Week</th>
+                                        <th>Avg Wgt</th>
+                                        <th>Amt of Activities</th>
+                                        <th>Total Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color: gold;">
+                            <h3 class="panel-title">Weather?</h3>
+                        </div>
+                        <div class="panel-body" align="center" id="weather">
+                            <canvas id="weatherIcon" width="128" height="128"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Begins area for chart -->
+            <div id="chart-area">
+                <!-- Desired size needs to be set in CSS, ratio changed here -->
+                <canvas id="myChart" width="200" height="100"></canvas>
+            </div>
+            <!-- Close display container -->
+        </div>
+</body>
+
+</html>

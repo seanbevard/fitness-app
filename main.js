@@ -1,6 +1,4 @@
-// Initialize Firebase
-// Initialize Firebase
-// Initialize Firebase
+window.onload = function() {
 var config = {
     apiKey: "AIzaSyBH2i1Tv_Ih6bnw1WTPICvUWP8HhtF3RFo",
     authDomain: "fitnessapp-b2272.firebaseapp.com",
@@ -30,6 +28,13 @@ var running=false;
 var swim=false;
 var hike = false;
 //var username='';
+//variables to store data pulled from Geolocation API -SB
+var usersZipCode;
+var usersCity;
+var usersLongitude;
+var usersLatitude;
+var usersState;
+var usersChanceOfRain;
 //Updating current users
 
 dataRef.ref().child('users').on("child_added", function(snapshot) {
@@ -143,7 +148,9 @@ function writeUserData() {
              
              1:              {
                  weight: $('#weight-entry').val(),
-                 date  : '01-07-2017'
+                 date  : '01-07-2017',
+                 activity: '',
+                 duration:0,
                  
              }
          } 
@@ -159,7 +166,6 @@ function writeUserData() {
   weight: "98",
   date: "10-09-2017"
 });*/
-
 
 
 
@@ -268,7 +274,7 @@ $("#submit-username").on("click", function(event) {
        
         {
             localStorage.setItem("username", username);
-            window.open("signup.html"); 
+            window.open("landpage.html"); 
          
             
         }
@@ -282,4 +288,132 @@ $("#signup-new-user").on("click", function(event) {
 
 });
 
+
+
+    // Logic for sports quote API
+    var queryURL = "http://quotes.rest/qod.json?category=sports"
+        // Performing our AJAX GET request
+    $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        // After the data comes back from the API
+        .done(function(response) {
+            // Storing an array of results in the results variable
+            var results = response.contents;
+            // Get the quote data from the object
+            var data = results.quotes[0];
+
+            // Check the object returned
+            console.log(data);
+
+
+            // Creating a div with the class "item"
+            var quoteDiv = $("<div class='item'>");
+
+            // Storing the result item's rating
+            var quote = data.quote;
+            var author = data.author;
+
+            // Creating a paragraph tag with the result item's rating
+            var p = $("<p id='quote-item'>").text(quote + " - " + author);
+
+
+            // Appending the paragraph we created 
+            quoteDiv.append(p);
+
+
+            // Prepending the quoteDiv to the display
+            $("#quote-display").prepend(quoteDiv);
+
+        });
+
+
+    //adding ajax code to get location from IP address -SB
+    //also now pulling latitude/longitude to pass it to DarkSky (weather) -SB
+    $.ajax({
+        url: 'http://freegeoip.net/json/',
+        async: false,
+        method: 'GET'
+    }).done(function(location) {
+        usersZipCode = location.zip_code;
+        usersCity = location.city;
+        usersState = location.region_code;
+        usersLongitude = location.longitude;
+        usersLatitude = location.latitude;
+    });
+
+    //ajax call for weather -SB
+    $.ajax({
+            url: "https://api.darksky.net/forecast/" + "8c7c81eec838047ee423275f144c553b" + "/" + usersLatitude + "," + usersLongitude,
+            async: false,
+            method: "GET"
+        })
+        .done(function(response) {
+            //storing chance of rain to use elsewhere -SB
+            usersChanceOfRain = response.currently.precipProbability * 100;
+            $("#weather").append("<h3>Current Weather In<br> " + usersCity + ", " + usersState + "</h1>");
+            $("#weather").append("Current Conditions: " + response.currently.summary + "<br>");
+            $("#weather").append("Temperature: " + Math.round(response.currently.temperature) + "°F<br>");
+            $("#weather").append("Chance of rain: " + usersChanceOfRain + "%");
+
+            //code for weather icons -SB
+            var skycons = new Skycons({ "color": "#222" });
+            //alert(currentWeatherIcon);
+            skycons.add("weatherIcon", response.currently.icon);
+
+           // $("#weather").prepend("<canvas id='" + response.currently.icon + "'width='128' height='128'></canvas>");
+            skycons.play();
+        });
+
+
+    // Create dataset for chart from variables
+
+    var chartData = {
+        labels: ["01-02-17", "01-03-17", "01-05-17", "01-07-17"],
+        // Need an array returned of each date weight was logged. i.e. 
+        // ["01-02-07", "01-03-17"] or var array
+        datasets: [{
+            data: ["120", "118", "115", "114"],
+            // Need array of weights that were input or var array
+            fill: false,
+            backgroundColor: "gold",
+            pointBorderColor: "purple",
+            pointHoverBorderWidth: 2,
+            tension: 0.1,
+
+        }]
+
+
+    };
+    // Different optons to adjust chart created
+    var options = {
+
+        title: {
+            display: true,
+            text: "Your Weight Loss Over Time",
+        },
+        legend: {
+            display: false,
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+
+
+    // Initialize chart
+    var ctx = document.getElementById("myChart");
+
+    // Create line chart
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: options
+    })
+};
 
