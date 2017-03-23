@@ -20,19 +20,12 @@
 	font-size:1em;
 }
 
-<<<<<<< HEAD
+
 .view {
     height: 100%;
 }
 
-.view {
-    background: url("https://mdbootstrap.com/images/regular/city/img%20(17).jpg")no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-=======
+
 .panel.panel-primary { 
 
 border-color: gold;
@@ -49,5 +42,29 @@ color: purple;
 border-color: gold;
 }
 
+/* Css for indextemp.html aka login page */
+#sign-in-header {
+text-align: center;
+font-size: 2.5em;
+padding-bottom:20px;
+}
 
->>>>>>> 393ba6d2dafc086b3789ade1b8e481699e1d517a
+.login-container {
+ padding: 20px;
+ max-width: 250em;
+ max-height: 500em;
+ width: 100%; 
+ border-radius: 10px;
+ background-color: gold;
+ margin: 0 auto;
+ overflow: hidden;
+
+}
+
+#submit-container {
+padding-top:25px;
+}
+
+#signin-body {
+	background-color: purple;
+}
