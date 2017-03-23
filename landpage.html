@@ -2,22 +2,23 @@
 <html>
 
 <head>
-    <title>Class Project1</title>
+    <title>Wellness Dashboard</title>
+    <!--     Added charset below so that the 'degrees' symbol displays correctly -SB -->
+    <meta charset="utf-8">
     <meta name="generator" content="BBEdit 11.6" />
     <!--   Added link to jquery library, js file and firebase -SB -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
     <!-- CDN for charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <!-- Main JS file -->
     <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="moment.js"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Our CSS sheet -->
     <link rel="stylesheet" href="style.css">
-    
-
 </head>
 
 <body>
@@ -25,19 +26,13 @@
         <div class="full-bg-img flex-center">
     <div class="container">
         <div class="page-header">
-
-            <h1>My Health Page </h1>
+            <h1> Wellness Dashboard </h1>
             <span id="quote-display"> <img src="https://theysaidso.com/branding/theysaidso.png" id="quote-logo" height="20" width="20" alt="theysaidso.com"/><a id="logo-text" href="https://theysaidso.com" title="Powered by quotes from theysaidso.com">theysaidso.com</a></span>
-           
-
             <!-- added the zipcode div below just for testing -SB -->
             <div id='zipcode'></div>
         </div>
         <form class="form-inline">
-            <div class="form-group">
-                <label class="sr-only" for="date-input">Date</label>
-                <input type="date" class="form-control" id="date-input" placeholder="Date">
-            </div>
+        <p id="logData">Log Data For: </p>
             <div class="form-group">
                 <label class="sr-only" for="weight-input">Weight</label>
                 <input type="weight" class="form-control" id="weight-input" placeholder="Weight">
@@ -50,18 +45,18 @@
                 <label class="sr-only" for="duration-input">Duration</label>
                 <input type="duration" class="form-control" id="duration-input" placeholder="Duration">
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default" id="submit-weighin">Submit</button>
         </form>
         <br> </br>
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="panel panel-primary" style="border-color: gold">
-                        <div class="panel-heading" style="background-color: gold; border-bottom:gold; color:purple">
-                            <h3 class="panel-title"><strong>Week Stats</strong></h3>
+                    <div class="panel panel-primary" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Current Week Stats</strong></h3>
                         </div>
                         <div class="panel-body">
-                            <table class="table table-hover" id='week-stats-table' style="color:purple">
+                            <table class="table table-hover" id='week-stats-table'>
                                 <thead>
                                     <tr>
                                         <th>Day</th>
@@ -75,18 +70,19 @@
                             </table>
                         </div>
                     </div>
-                    <div class="panel panel-primary" style="border-color: gold">
-                        <div class="panel-heading" style="background-color: gold; border-bottom:gold; color:purple">
-                            <h3 class="panel-title"><strong>Weekly Stats</strong></h3>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Weekly Summary</strong></h3>
                         </div>
                         <div class="panel-body">
-                            <table class="table table-hover" id='weekly-stats-table' style="color:purple">
+                            <table class="table table-hover" id='weekly-stats-table'>
                                 <thead>
                                     <tr>
                                         <th>Week</th>
-                                        <th>Avg Wgt</th>
+                                        <th>Finish Weight</th>
                                         <th>Amt of Activities</th>
                                         <th>Total Time</th>
+                                        <th> Lbs Remaning</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,17 +93,15 @@
                 </div>
                 <div class="col-md-4">
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="background-color: gold;">
+                        <div class="panel-heading">
                             <h3 class="panel-title">Weather?</h3>
                         </div>
-                        <div class="panel-body" id="weather">
-                            <img class="img img-thumbnail" src="http://placehold.it/256x256">
+                        <div class="panel-body" align="center" id="weather">
+                            <canvas id="weatherIcon" width="128" height="128"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <!-- Begins area for chart -->
             <div id="chart-area">
             <div class="panel panel-primary" style="border-color: gold">
@@ -117,11 +111,14 @@
                 <!-- Desired max needs to be set in CSS, then changed here -->
                 <canvas id="myChart" width="200" height="100"></canvas>
             </div>
-        <!-- Close display container -->
+            <!-- Close display container -->
         </div>
+<<<<<<< HEAD
             </div>
         </div>
 
+=======
+>>>>>>> 393ba6d2dafc086b3789ade1b8e481699e1d517a
 </body>
 
 </html>

@@ -20,6 +20,7 @@
 	font-size:1em;
 }
 
+<<<<<<< HEAD
 .view {
     height: 100%;
 }
@@ -31,3 +32,22 @@
     -o-background-size: cover;
     background-size: cover;
 }
+=======
+.panel.panel-primary { 
+
+border-color: gold;
+}
+.panel-primary>.panel-heading {
+background-color: gold;
+color: purple;
+border-color: gold;
+
+}
+.panel-default>.panel-heading {
+background-color: gold;
+color: purple;
+border-color: gold;
+}
+
+
+>>>>>>> 393ba6d2dafc086b3789ade1b8e481699e1d517a
