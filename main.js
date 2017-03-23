@@ -37,6 +37,7 @@ var usersLatitude;
 var usersState;
 var usersChanceOfRain;
 var weighindata=[];
+var myweighinno;
 
 
 
@@ -46,17 +47,23 @@ $("#logData").append(moment(todaysDate).format("MM/DD/YY"));
 //Updating current users
 
 dataRef.ref().child('users').on("child_added", function(snapshot) {
-    childData = snapshot.val();
+    var childData = snapshot.val();
     currentusernames.push(childData.username);
-    weighinno.push(childData.weighinno);
     currentdata.push(childData);
-   // weighindata.push(childata.weighin);
+  //  weighindata.push(childData.weighin);
     
 });
     
 dataRef.ref().child('users/'+localStorage.getItem("username")+'/weighin').on("child_added", function(snapshot) {
-   childData = snapshot.val();
+   var childData = snapshot.val();
     weighindata.push(childData);   
+});
+    
+    
+dataRef.ref('users/'+localStorage.getItem("username")+'/weighinno').on("value", function(snapshot) {
+   var childData = snapshot.val();
+   console.log("childata is : " + childData);
+  myweighinno=(childData);
 });
 
  
@@ -64,7 +71,7 @@ dataRef.ref().child('users/'+localStorage.getItem("username")+'/weighin').on("ch
    function createinfofortyler()
     {var username=  localStorage.getItem("username");
   //JSON.parse()
-      for(i=0;i<=weighinno[currentusernames.indexOf(username)];i++)
+      for(i=0;i<myweighinno;i++)
       {
           var t =JSON.stringify(weighindata[i]);
          console.log(t);
@@ -77,7 +84,7 @@ function writeUserLog() {
   var username=  localStorage.getItem("username");
   
   //var myweighinno=localStorage.getItem("weighinno");
-    var myweighinno=weighinno[currentusernames.indexOf(username)];
+   // var myweighinno=weighinno[currentusernames.indexOf(username)];
    
     console.log(myweighinno);
      myweighinno++;
