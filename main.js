@@ -27,6 +27,7 @@ var cycle=false;
 var running=false;
 var swim=false;
 var hike = false;
+var weighinno=[];
 //var username='';
 //variables to store data pulled from Geolocation API -SB
 var usersZipCode;
@@ -35,6 +36,9 @@ var usersLongitude;
 var usersLatitude;
 var usersState;
 var usersChanceOfRain;
+var weighindata=[];
+
+
 
 //creating a variable to store today's date:
 var todaysDate = Date.now();
@@ -44,57 +48,76 @@ $("#logData").append(moment(todaysDate).format("MM/DD/YY"));
 dataRef.ref().child('users').on("child_added", function(snapshot) {
     childData = snapshot.val();
     currentusernames.push(childData.username);
+    weighinno.push(childData.weighinno);
     currentdata.push(childData);
-    console.log("hi baby");
+   // weighindata.push(childata.weighin);
+    
+});
+    
+dataRef.ref().child('users/'+localStorage.getItem("username")+'/weighin').on("child_added", function(snapshot) {
+   childData = snapshot.val();
+    weighindata.push(childData);   
 });
 
  
 //Retrieving data from database
-   function getuserinfo()
-    {
-    var username=localStorage.getItem("username");
-   
+   function createinfofortyler()
+    {var username=  localStorage.getItem("username");
+  //JSON.parse()
+      for(i=0;i<=weighinno[currentusernames.indexOf(username)];i++)
+      {
+          var t =JSON.stringify(weighindata[i]);
+         console.log(t);
+      }
     }
-    /*var childData = snapshot.val();
-    if(childData.username==);
-    
-    interests.push(childData.username);
-    interests.push(childData.targetweight);
-    interests.push(childData.weight);
-    
-    
-    if(childData.kayak=='true')
-        (interests.push('kayak'));
-    if(childData.dance=='true')
-        (interests.push('dance'));
-    if(childData.yoga=='true')
-        (interests.push('yoga'));
-     if(childData.spinning=='true')
-        (interests.push('spinning'));
-    if(childData.aerobics=='true')
-        (interests.push('aerobics'));
-    if(childData.roller=='true')
-        (interests.push('rollerblading'));
-     if(childData.cycle=='true')
-        (interests.push('cycle'));
-    if(childData.running=='true')
-        (interests.push('running'));
-    if(childData.swim=='true')
-        (interests.push('swim'));
-     if(childData.hike=='true')
-        (interests.push('hike'));
-    if(childData.treadmill=='true')
-        (interests.push('treadmill'));
-    if(childData.bootcamp=='yoga')
-        (interests.push('bootcamp'));
-    if(childData.tennis=='true')
-        (interests.push('tennis'));
-    if(childData.weights=='yoga')
-        (interests.push('weights'));
-});*/
 
 
+function writeUserLog() {
+    
+  var username=  localStorage.getItem("username");
+  
+  //var myweighinno=localStorage.getItem("weighinno");
+    var myweighinno=weighinno[currentusernames.indexOf(username)];
+   
+    console.log(myweighinno);
+     myweighinno++;
+    console.log(myweighinno);
+ 
+  dataRef.ref().child('users/'+username+'/weighin/'+myweighinno).set({  
+      
+      
+                 weight: $('#weight-input').val(),
+                 date  : todaysDate,
+                 activity: $('#activity-input').val(),
+                 duration:$('#duration-input').val()
+                 
+             
 
+ }); 
+    dataRef.ref().child('users/'+username ).update({  
+      
+      
+                
+                 weighinno: myweighinno
+             
+
+ }); 
+                        }
+    
+ $("#submit-weighin").on("click", function(event) {
+    
+    event.preventDefault();
+    writeUserLog();
+    createinfofortyler();
+       document.getElementById("weight-input").value="";
+       document.getElementById("activity-input").value="";
+      document.getElementById("duration-input").value="";
+    //   $('#weight-input').val("");
+     //  $('# activity-input').val("");
+     //  $('#duration-input').val("") ;           
+
+});   
+   
 function writeUserData() {
 
     dataRef.ref().child('users/'+$('#name').val()).set({  
@@ -227,7 +250,7 @@ $("#submit-button").on("click", function(event) {
     if (validateUsername($('#name').val()))
         {
         writeUserData();
-        window.open("landpage.html");
+        window.open("indextemp.html");
         }
     else
         {   
@@ -265,6 +288,7 @@ function validateUsername(name){
 $("#submit-username").on("click", function(event) {
     
     event.preventDefault();
+    console.log(currentdata,currentusernames,weighinno);
     username= ($('#userName').val());
     
     if(validateUsername($('#userName').val()))
@@ -273,12 +297,14 @@ $("#submit-username").on("click", function(event) {
     
     else
        
-        {   var userobj=currentdata[currentusernames.indexOf(username)];
-           
+        {   
+            var userobj=currentdata[currentusernames.indexOf(username)];
+            var myweighinno=weighinno[currentusernames.indexOf(username)];
             localStorage.setItem("userObj",JSON.stringify(userobj));
             localStorage.setItem("username", username);
-            var data = JSON.parse(localStorage.getItem('userObj'));
-            console.log(data);
+            localStorage.setItem("weighinno", myweighinno);
+            //var data = JSON.parse(localStorage.getItem('userObj'));
+            //console.log(data);
         
             window.open("landpage.html"); 
          
@@ -289,7 +315,8 @@ $("#submit-username").on("click", function(event) {
 
 
 $("#signup-new-user").on("click", function(event) {
-
+    
+    event.preventDefault();
     window.open("signup.html");                
 
 });
