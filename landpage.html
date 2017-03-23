@@ -21,6 +21,8 @@
 </head>
 
 <body>
+    <div class="view">
+        <div class="full-bg-img flex-center">
     <div class="container">
         <div class="page-header">
 
@@ -108,10 +110,16 @@
 
             <!-- Begins area for chart -->
             <div id="chart-area">
-                <!-- Desired size needs to be set in CSS, ratio changed here -->
+            <div class="panel panel-primary" style="border-color: gold">
+            <div class="panel-heading" style="background-color: gold; border-bottom:gold; color:purple">
+            <h3 class="panel-title"><strong>Week Stats</strong></h3>
+            </div>
+                <!-- Desired max needs to be set in CSS, then changed here -->
                 <canvas id="myChart" width="200" height="100"></canvas>
             </div>
         <!-- Close display container -->
+        </div>
+            </div>
         </div>
 
 </body>
