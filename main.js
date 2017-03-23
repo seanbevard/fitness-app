@@ -49,10 +49,7 @@ dataRef.ref().child('users').on("child_added", function(snapshot) {
    function getuserinfo()
     {
     var username=localStorage.getItem("username");
-        
-        
-    var userobj=currentdata[currentusernames.indexOf(username)];
-    console.log(userobj);
+   
     }
     /*var childData = snapshot.val();
     if(childData.username==);
@@ -272,9 +269,13 @@ $("#submit-username").on("click", function(event) {
     
     else
        
-        {   var userobj=currentdata[currentusernames.indexOf(username);
-            localstorage.setsetItem("userObj",userobj);
+        {   var userobj=currentdata[currentusernames.indexOf(username)];
+           
+            localStorage.setItem("userObj",JSON.stringify(userobj));
             localStorage.setItem("username", username);
+            var data = JSON.parse(localStorage.getItem('userObj'));
+            console.log(data);
+        
             window.open("landpage.html"); 
          
             
