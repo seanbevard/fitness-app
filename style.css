@@ -19,3 +19,21 @@
 	vertical-align: middle;
 	font-size:1em;
 }
+
+.panel.panel-primary { 
+
+border-color: gold;
+}
+.panel-primary>.panel-heading {
+background-color: gold;
+color: purple;
+border-color: gold;
+
+}
+.panel-default>.panel-heading {
+background-color: gold;
+color: purple;
+border-color: gold;
+}
+
+
