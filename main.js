@@ -35,6 +35,10 @@ var usersLongitude;
 var usersLatitude;
 var usersState;
 var usersChanceOfRain;
+
+//creating a variable to store today's date:
+var todaysDate = Date.now();
+$("#logData").append(moment(todaysDate).format("MM/DD/YY"));
 //Updating current users
 
 dataRef.ref().child('users').on("child_added", function(snapshot) {
