@@ -1,6 +1,7 @@
 #quote-item {
 	font-size: 1.5em;
 	font-weight: bold;
+	font-style: italic;
 }
 
 #chart-area {
@@ -20,6 +21,8 @@
 	font-size:1em;
 }
 
+
+
 .panel.panel-primary { 
 
 border-color: gold;
@@ -36,4 +39,9 @@ color: purple;
 border-color: gold;
 }
 
+h1{
 
+color: Purple;
+font-weight: bold;
+font-size: 60px;
+}
