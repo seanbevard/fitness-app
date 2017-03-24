@@ -1,4 +1,5 @@
 window.onload = function() {
+  alert("test");
 var config = {
     apiKey: "AIzaSyBH2i1Tv_Ih6bnw1WTPICvUWP8HhtF3RFo",
     authDomain: "fitnessapp-b2272.firebaseapp.com",
@@ -338,14 +339,6 @@ $("#signup-new-user").on("click", function(event) {
     window.open("signup.html");                
 
 });
-
-
-
-   
-    
-console.log(usersLatitude);
-
-
 
     // Create dataset for chart from variables
 
