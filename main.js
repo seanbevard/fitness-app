@@ -98,9 +98,11 @@ function writeUserLog() {
                  activity: $('#activity-input').val(),
                  duration:$('#duration-input').val()
                  
-             
+            
 
  }); 
+ 
+             
     dataRef.ref().child('users/'+username ).update({  
       
       
@@ -121,7 +123,16 @@ function writeUserLog() {
       document.getElementById("duration-input").value="";
     //   $('#weight-input').val("");
      //  $('# activity-input').val("");
-     //  $('#duration-input').val("") ;           
+     //  $('#duration-input').val("") ;   
+    console.log(createinfofortyler);   
+ 
+    console.log(weighindata[(myweighinno-1)].weight);
+  //  console.log(weighindata[3].activity);
+   // console.log(weighindata[3].duration);
+   var tempDate = weighindata[(myweighinno-1)].date;
+   var currentDate= moment.unix(tempDate).format("ddd");
+   console.log(currentDate);
+ $("#day-stats-table > tbody").append("<tr><td>"+ currentDate + "</td><td>" + weighindata[(myweighinno-1)].weight + "</td><td>" + weighindata[(myweighinno-1)].activity + "</td><td>" + weighindata[(myweighinno-1)].duration + "</td></tr>");     
 
 });   
    
