@@ -385,7 +385,7 @@ $("#signup-new-user").on("click", function(event) {
 
     //ajax call for weather -SB
     $.ajax({
-            url: "https://api.darksky.net/forecast/" + "8c7c81eec838047ee423275f144c553b" + "/" + usersLatitude + "," + usersLongitude,
+            url: "https://crossorigin.me/https://api.darksky.net/forecast/" + "8c7c81eec838047ee423275f144c553b" + "/" + usersLatitude + "," + usersLongitude,
             async: false,
             method: "GET"
         })
