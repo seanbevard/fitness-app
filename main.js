@@ -38,6 +38,8 @@ var usersState;
 var usersChanceOfRain;
 var weighindata=[];
 
+dbRef = firebase("https://fitnessapp-b2272.firebaseio.com");
+console.log(dbRef.child('weight'));
 
 
 //creating a variable to store today's date:
@@ -50,6 +52,7 @@ dataRef.ref().child('users').on("child_added", function(snapshot) {
     currentusernames.push(childData.username);
     weighinno.push(childData.weighinno);
     currentdata.push(childData);
+    
    // weighindata.push(childata.weighin);
     
 });
@@ -60,16 +63,16 @@ dataRef.ref().child('users/'+localStorage.getItem("username")+'/weighin').on("ch
 });
 
  
-//Retrieving data from database
-   function createinfofortyler()
-    {var username=  localStorage.getItem("username");
-  //JSON.parse()
-      for(i=0;i<=weighinno[currentusernames.indexOf(username)];i++)
-      {
-          var t =JSON.stringify(weighindata[i]);
-         console.log(t);
-      }
-    }
+// //Retrieving data from database
+//    function createinfofortyler()
+//     {var username=  localStorage.getItem("username");
+//   //JSON.parse()
+//       for(i=0;i<=weighinno[currentusernames.indexOf(username)];i++)
+//       {
+//           var t =JSON.stringify(weighindata[i]);
+//          console.log(t);
+//       }
+//     }
 
 
 function writeUserLog() {
@@ -399,9 +402,25 @@ $("#signup-new-user").on("click", function(event) {
             skycons.play();
         });
 
+        console.log(startWeight);
+    var weightArray = new Array();
+    function createinfofortyler()
+    {var username=  localStorage.getItem("username");
+  //JSON.parse()
+      for(i=0;i<=weighinno[currentusernames.indexOf(username)];i++)
+      {
+          var t = Number(JSON.stringify(weighindata[i].weight));
+         console.log(t);
 
+         
+         weightArray.push(t);
+         console.log(weightArray);
+      }
+
+    }
     // Create dataset for chart from variables
-
+    createinfofortyler();
+    console.log(weightArray);    
     var chartData = {
         labels: ["01-02-17", "01-03-17", "01-05-17", "01-07-17"],
         // Need an array returned of each date weight was logged. i.e. 
@@ -447,6 +466,6 @@ $("#signup-new-user").on("click", function(event) {
         type: 'line',
         data: chartData,
         options: options
-    })
+    });
 };
 
