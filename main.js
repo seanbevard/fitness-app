@@ -1,4 +1,5 @@
 window.onload = function() {
+
 var config = {
     apiKey: "AIzaSyBH2i1Tv_Ih6bnw1WTPICvUWP8HhtF3RFo",
     authDomain: "fitnessapp-b2272.firebaseapp.com",
@@ -130,6 +131,7 @@ function writeUserLog() {
   //for (i=1; i<myweighinno; i++) {
  // console.log (weighindate[i].weight)
   //}
+
   function printTable() {
     flag=1;
    
@@ -143,6 +145,7 @@ function writeUserLog() {
    }
 }
     
+
  $("#submit-weighin").on("click", function(event) {
     
     event.preventDefault();
