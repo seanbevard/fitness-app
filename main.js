@@ -462,7 +462,8 @@ function load_ajax() {
             });
 }
 
-//load ajax stuff after page loads so we can use dom elements -SB
+//load ajax stuff after page loads so we can use dom elements
+//this fixes the bug where we had to set async to false --SB
  window.onload = function(){
   load_ajax();
  }
