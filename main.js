@@ -257,7 +257,7 @@ $("#submit-button").on("click", function(event) {
     if (validateUsername($('#name').val()))
         {
         writeUserData();
-        window.open("indextemp.html");
+        window.open("index.html");
         }
     else
         {   
@@ -331,7 +331,7 @@ $("#signup-new-user").on("click", function(event) {
 
 
     // Logic for sports quote API
-    var queryURL = "http://quotes.rest/qod.json?category=sports"
+    var queryURL = "https://quotes.rest/qod.json?category=sports"
         // Performing our AJAX GET request
     $.ajax({
             url: queryURL,
@@ -372,7 +372,7 @@ $("#signup-new-user").on("click", function(event) {
     //adding ajax code to get location from IP address -SB
     //also now pulling latitude/longitude to pass it to DarkSky (weather) -SB
     $.ajax({
-        url: 'http://freegeoip.net/json/',
+        url: 'https://freegeoip.net/json/',
         async: false,
         method: 'GET'
     }).done(function(location) {
