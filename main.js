@@ -110,6 +110,10 @@ function writeUserLog() {
 
  }); 
                         }
+  //for (i=1; i<myweighinno; i++) {
+ // console.log (weighindate[i].weight)
+  //}
+  
     
  $("#submit-weighin").on("click", function(event) {
     
@@ -121,7 +125,15 @@ function writeUserLog() {
       document.getElementById("duration-input").value="";
     //   $('#weight-input').val("");
      //  $('# activity-input').val("");
-     //  $('#duration-input').val("") ;           
+     //  $('#duration-input').val("") ;   
+    var tempDate = weighindata[(myweighinno-1)].date;
+    var currentDate = moment.unix(tempDate).format("ddd");
+    console.log (tempDate);
+    console.log (currentDate);
+    
+    for (i=1; i < myweighinno; i++) {
+    $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[i].weight + "</td><td>"  + weighindata[i].activity + "</td><td>"+ weighindata[i].duration + "</td></tr>");
+    }      
 
 });   
    
