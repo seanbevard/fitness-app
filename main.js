@@ -318,7 +318,6 @@ $("#submit-username").on("click", function(event) {
        
         {   
             var userobj=currentdata[currentusernames.indexOf(username)];
-            var myweighinno=weighinno[currentusernames.indexOf(username)];
             localStorage.setItem("userObj",JSON.stringify(userobj));
             localStorage.setItem("username", username);
             localStorage.setItem("weighinno", myweighinno);
