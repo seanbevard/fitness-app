@@ -29,6 +29,7 @@ background-color: gold;
 color: purple;
 border-color: gold;
 
+
 }
 .panel-default>.panel-heading {
 background-color: gold;
@@ -36,4 +37,11 @@ color: purple;
 border-color: gold;
 }
 
+.panel-title{
+font-size: 24px;
+}
+
+h3 {
+font-size: 16px;
+}
 
