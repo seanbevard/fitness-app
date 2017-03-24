@@ -25,7 +25,7 @@
     to get the whole map to load and display correctly in the div
     by using the whole page as an object.  --SB   -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeV_uij9_J8EaWY1cm03WuRC9SfXFPpK4&sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeV_uij9_J8EaWY1cm03WuRC9SfXFPpK4"></script>
     <script>
     var usersLatitude2;
     var usersLongitude2;
@@ -38,7 +38,7 @@
     }).done(function(location) {
         usersLongitude2 = location.longitude;
         usersLatitude2 = location.latitude;
-    });
+ 
 
     //function creates the map and passes in lat/long --SB
     createMap(usersLatitude2, usersLongitude2);
@@ -85,6 +85,7 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     }
+       });
     </script>
 </head>
 

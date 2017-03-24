@@ -6,7 +6,6 @@ var queryURL = "https://quotes.rest/qod.json?category=sports"
     // Performing our AJAX GET request
 $.ajax({
         url: queryURL,
-        async: false,
         method: "GET"
     })
     // After the data comes back from the API
@@ -15,11 +14,6 @@ $.ajax({
         var results = response.contents;
         // Get the quote data from the object
         var data = results.quotes[0];
-
-        // Check the object returned
-        console.log(data);
-
-
         // Creating a div with the class "item"
         var quoteDiv = $("<div class='item'>");
 
@@ -47,7 +41,6 @@ document.getElementById("map_canvas1").innerHTML = '<object width="300" height="
 //ajax call for weather -SB
 $.ajax({
     url: 'https://freegeoip.net/json/',
-    async: false,
     method: 'GET'
 }).done(function(location) {
     usersZipCode = location.zip_code;
@@ -58,7 +51,6 @@ $.ajax({
 
     $.ajax({
             url: "https://crossorigin.me/https://api.darksky.net/forecast/" + "8c7c81eec838047ee423275f144c553b" + "/" + usersLatitude + "," + usersLongitude,
-            async: false,
             method: "GET"
         })
         .done(function(response) {
