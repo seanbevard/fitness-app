@@ -13,6 +13,16 @@
 	font-size:0.9em;
 }
 
+/*weather related css --SB
+*/
+#map_canvas1{
+overflow: auto;
+}
+
+#weatherIcon{
+	float:left;
+}
+
 #logo-text {
 	color: #9fcc25; 
 	margin-left: 4px; 
@@ -37,6 +47,7 @@ color: purple;
 border-color: gold;
 }
 
+
 .panel-title{
 font-size: 24px;
 }
@@ -44,4 +55,5 @@ font-size: 24px;
 h3 {
 font-size: 16px;
 }
+
 

@@ -341,81 +341,10 @@ $("#signup-new-user").on("click", function(event) {
 
 
 
-    // Logic for sports quote API
-    var queryURL = "https://quotes.rest/qod.json?category=sports"
-        // Performing our AJAX GET request
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        // After the data comes back from the API
-        .done(function(response) {
-            // Storing an array of results in the results variable
-            var results = response.contents;
-            // Get the quote data from the object
-            var data = results.quotes[0];
+   
+    
+console.log(usersLatitude);
 
-            // Check the object returned
-            console.log(data);
-
-
-            // Creating a div with the class "item"
-            var quoteDiv = $("<div class='item'>");
-
-            // Storing the result item's rating
-            var quote = data.quote;
-            var author = data.author;
-
-            // Creating a paragraph tag with the result item's rating
-            var p = $("<p id='quote-item'>").text(quote + " - " + author);
-
-
-            // Appending the paragraph we created 
-            quoteDiv.append(p);
-
-
-            // Prepending the quoteDiv to the display
-            $("#quote-display").prepend(quoteDiv);
-
-        });
-
-
-    //adding ajax code to get location from IP address -SB
-    //also now pulling latitude/longitude to pass it to DarkSky (weather) -SB
-    $.ajax({
-        url: 'https://freegeoip.net/json/',
-        async: false,
-        method: 'GET'
-    }).done(function(location) {
-        usersZipCode = location.zip_code;
-        usersCity = location.city;
-        usersState = location.region_code;
-        usersLongitude = location.longitude;
-        usersLatitude = location.latitude;
-    });
-
-    //ajax call for weather -SB
-    $.ajax({
-            url: "https://crossorigin.me/https://api.darksky.net/forecast/" + "8c7c81eec838047ee423275f144c553b" + "/" + usersLatitude + "," + usersLongitude,
-            async: false,
-            method: "GET"
-        })
-        .done(function(response) {
-            //storing chance of rain to use elsewhere -SB
-            usersChanceOfRain = response.currently.precipProbability * 100;
-            $("#weather").append("<h3>Current Weather In<br> " + usersCity + ", " + usersState + "</h1>");
-            $("#weather").append("Current Conditions: " + response.currently.summary + "<br>");
-            $("#weather").append("Temperature: " + Math.round(response.currently.temperature) + "°F<br>");
-            $("#weather").append("Chance of rain: " + usersChanceOfRain + "%");
-
-            //code for weather icons -SB
-            var skycons = new Skycons({ "color": "#222" });
-            //alert(currentWeatherIcon);
-            skycons.add("weatherIcon", response.currently.icon);
-
-           // $("#weather").prepend("<canvas id='" + response.currently.icon + "'width='128' height='128'></canvas>");
-            skycons.play();
-        });
 
 
     // Create dataset for chart from variables
@@ -467,4 +396,3 @@ $("#signup-new-user").on("click", function(event) {
         options: options
     })
 };
-
