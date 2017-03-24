@@ -12,7 +12,9 @@
 	z-index:50;
 	font-size:0.9em;
 }
-
+#map_canvas1{
+overflow: auto;
+}
 #logo-text {
 	color: #9fcc25; 
 	margin-left: 4px; 
@@ -37,3 +39,6 @@ border-color: gold;
 }
 
 
+#weatherIcon{
+	float:left;
+}

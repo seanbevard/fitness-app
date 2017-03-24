@@ -1,2 +1,7 @@
 .top-buffer{ margin-top: 50px;}
 .mid-buffer{ margin-top: 150px;}
+#map_canvas{
+	width:400px;
+	height:400px;
+	outline: 1px solid red;
+}
