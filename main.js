@@ -38,6 +38,7 @@ var usersState;
 var usersChanceOfRain;
 var weighindata=[];
 var myweighinno;
+var flag=0;
 
 
 
@@ -64,6 +65,12 @@ dataRef.ref('users/'+localStorage.getItem("username")+'/weighinno').on("value", 
    var childData = snapshot.val();
    console.log("childata is : " + childData);
   myweighinno=(childData);
+    if (flag==0)
+     printTable();
+    else
+    {     var tempDate = weighindata[myweighinno-1].date;
+          var currentDate = moment.unix(tempDate).format("ddd");
+        $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[myweighinno-1].weight + "</td><td>"  + weighindata[myweighinno-1].activity + "</td><td>"+ weighindata[myweighinno-1].duration + "</td></tr>");}
 });
 
  
@@ -81,8 +88,17 @@ dataRef.ref('users/'+localStorage.getItem("username")+'/weighinno').on("value", 
 
 function writeUserLog() {
     
-  var username=  localStorage.getItem("username");
-  
+    var username=  localStorage.getItem("username");
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] =  "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+    var n = weekday[d.getDay()];
   //var myweighinno=localStorage.getItem("weighinno");
    // var myweighinno=weighinno[currentusernames.indexOf(username)];
    
@@ -95,6 +111,7 @@ function writeUserLog() {
       
                  weight: $('#weight-input').val(),
                  date  : todaysDate,
+                 day   : n,
                  activity: $('#activity-input').val(),
                  duration:$('#duration-input').val()
                  
@@ -113,7 +130,18 @@ function writeUserLog() {
   //for (i=1; i<myweighinno; i++) {
  // console.log (weighindate[i].weight)
   //}
-  
+  function printTable() {
+    flag=1;
+   
+   
+   for (i=1; i < myweighinno; i++) {
+        var tempDate = weighindata[i].date;
+   var currentDate = moment.unix(tempDate).format("ddd");
+   console.log (tempDate);
+   console.log (currentDate);
+   $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[i].weight + "</td><td>"  + weighindata[i].activity + "</td><td>"+ weighindata[i].duration + "</td></tr>");
+   }
+}
     
  $("#submit-weighin").on("click", function(event) {
     
@@ -126,16 +154,14 @@ function writeUserLog() {
     //   $('#weight-input').val("");
      //  $('# activity-input').val("");
      //  $('#duration-input').val("") ;   
-    var tempDate = weighindata[(myweighinno-1)].date;
-    var currentDate = moment.unix(tempDate).format("ddd");
-    console.log (tempDate);
-    console.log (currentDate);
-    
-    for (i=1; i < myweighinno; i++) {
-    $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[i].weight + "</td><td>"  + weighindata[i].activity + "</td><td>"+ weighindata[i].duration + "</td></tr>");
-    }      
-
+ 
 });   
+    
+    
+    
+
+
+
    
 function writeUserData() {
 
