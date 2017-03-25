@@ -38,8 +38,8 @@
 <br>
 <!-- First panel is for handling the search parameters -->
 <div class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title" id="signup-head">Sign Up!</h3>
+<div class="panel-heading" id="form-panel">
+<h3 class="panel-title" id="signup-head">Sign Up Here!</h3>
 </div>
 <div class="panel-body">
 
@@ -48,31 +48,31 @@
 
 <!-- Here we create the text box for capturing the search term-->
 <div class="form-group">
-<label for="search">Username</label>
-<input type="text" class="form-control" id="name">
+<label for="search">Enter A Username For Your Profile</label>
+<input type="text" placeholder="Username" class="form-control" id="name">
 </div>
 
 <!-- Here we capture the number of records that the user wants to retrieve  -->
 <div class="form-group">
-<label for="weight-entry">Weight</label>
-<input type="text" class="form-control" id="weight-entry">
+<label for="weight-entry">Enter Your Current Weight</label>
+<input type="text" placeholder="Weight" class="form-control" id="weight-entry">
 </div>
 
 
 <!-- Here we capture the Start Year Parameter-->
 <div class="form-group">
-<label for="weight-entry">Target Weight</label>
-<input type="text" class="form-control" id="target-weight-entry">
+<label for="weight-entry">Enter Your Target(Goal) Weight</label>
+<input type="text" placeholder="Target Weight" class="form-control" id="target-weight-entry">
 </div>
 
 <!-- Here we capture the End Year Parameter -->
 <div class="form-group">
 <div class="row">
-<div class="col-lg-6 ">
-<label for="search">Choose your favourite activities</label>
+<div class="col-lg-6">
+<label for="search">Choose Your Favorite Activites</label>
 
-<div class="input-group ">
-<div class ="row">
+<div class="input-group">
+<div class ="row activityRow">
 <span class="input-group-addon">
 <input type="checkbox" id="hiking" aria-label="...">
 <label for="Hiking">Hiking</label>
@@ -107,7 +107,7 @@
 <label for="Spinning">Spinning</label>
 </span>
 </div>
-<div class="row">
+<div class="row activityRow">
 <span class="input-group-addon">
 <input type="checkbox"id="yoga" aria-label="...">
 <label for="Yoga">Yoga</label>
