@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/stylesheet.css" type="text/css">
+<link rel="stylesheet" href="style.css" type="text/css">
 <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
 <script type="text/javascript" src="moment.js"></script>
 <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
@@ -21,14 +21,15 @@
 
 
 
-<body>
+<body id="signup-body">
 
 <!-- Main Bootstrap Search -->
 <div class="container">
 
 <!-- Jumbotron for Title -->
-<div class="jumbotron">
-<h1 class="text-center">Signup Page</h1>
+<div class="jumbotron" id="signup-title">
+<h1 class="text-center">First Time?</h1>
+<!-- <h2 class="text-center">Sign Up!</h2> -->
 </div>
 
 <!-- Row for Searching New York Times -->
@@ -38,7 +39,7 @@
 <!-- First panel is for handling the search parameters -->
 <div class="panel panel-primary">
 <div class="panel-heading">
-<h3 class="panel-title">Form Title</h3>
+<h3 class="panel-title" id="signup-head">Sign Up!</h3>
 </div>
 <div class="panel-body">
 

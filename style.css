@@ -45,7 +45,7 @@ overflow: auto;
 }
 
 
-.panel.panel-primary { 
+.panel>.panel-primary { 
 
 border-color: gold;
 }
@@ -84,7 +84,7 @@ padding-bottom:20px;
 padding-top:30px;
 }
 
-#signin-body {
+#signin-body, #signup-body {
 	background-color: purple;
 	font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background: url('assets/fitnessapp-background.jpeg');
@@ -97,9 +97,22 @@ padding-top:30px;
 	padding-top: 25px;
 }
 
-#signin-title {
+#signin-title, #signup-title {
 	text-align: center;
 	background: transparent;
+}
+
+#signin-title {
 	color: orange;
 }
 
+#signup-title {
+	color: yellow;
+}
+
+
+#signup-head {
+	text-align: center;
+	font-size:2.5em;
+	color: yellow;
+}
