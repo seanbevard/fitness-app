@@ -40,6 +40,8 @@ var usersChanceOfRain;
 var weighindata=[];
 var myweighinno;
 var flag=0;
+var weightArray=[];
+var dateArray=[];
 
 
 //creating a variable to store today's date:
@@ -70,8 +72,11 @@ dataRef.ref('users/'+localStorage.getItem("username")+'/weighinno').on("value", 
    var childData = snapshot.val();
    console.log("childata is : " + childData);
   myweighinno=(childData);
-    if (flag==0)
+    if (flag==0){
+     weightArray = [parseInt(weighindata[0].weight)];
+     dateArray = [moment(weighindata[0].date).format("MM-DD-YY")];
      printTable();
+    }
     else
     {     
     var tempDate = weighindata[i].date;
@@ -139,7 +144,8 @@ function writeUserLog() {
   //for (i=1; i<myweighinno; i++) {
  // console.log (weighindate[i].weight)
   //}
-
+// var weightArray = [parseInt(weighindata[0].weight)];
+var weightNumer
   function printTable() {
     flag=1;
    
@@ -147,8 +153,21 @@ function writeUserLog() {
    for (i=1; i < myweighinno; i++) {
     var tempDate = weighindata[i].date;
    var currentDate = moment(tempDate).format("ddd");
+   var placeDate = moment(tempDate).format("MM-DD-YY");
+   console.log(weighindata);
    console.log (tempDate);
    console.log (currentDate);
+   console.log (placeDate);
+
+   // weightArray = [parseInt(weighindata[0].weight)];
+   console.log(weighindata[i].weight);
+   weightNumber = parseInt(weighindata[i].weight);
+   weightArray.push(weightNumber);
+   console.log(weightArray);
+
+   dateArray.push(placeDate);
+   console.log(dateArray);
+
    $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[i].weight + "</td><td>"  + weighindata[i].activity + "</td><td>"+ weighindata[i].duration + "</td></tr>");
    }
 }
@@ -162,6 +181,7 @@ function writeUserLog() {
        document.getElementById("weight-input").value="";
        document.getElementById("activity-input").value="";
       document.getElementById("duration-input").value="";
+    displayChart();
     //   $('#weight-input').val("");
      //  $('# activity-input').val("");
      //  $('#duration-input').val("") ;   
@@ -348,8 +368,10 @@ $("#submit-username").on("click", function(event) {
     username= ($('#userName').val());
     
     if(validateUsername($('#userName').val()))
-   
-        alert("You are not registered, please sign up");
+      // Modal script for username not found
+        
+        $('#alertModal').modal('show');
+        
     
     else
        
@@ -375,14 +397,15 @@ $("#signup-new-user").on("click", function(event) {
     window.open("signup.html");                
 
 });
-
-  
+// Timeout must be set on chart so it displays after variables populate
+var delay = 3500;
+setTimeout(function displayChart(){
     var chartData = {
-        labels: ["01-02-17", "01-03-17", "01-05-17", "01-07-17"],
+        labels: dateArray,
         // Need an array returned of each date weight was logged. i.e. 
         // ["01-02-07", "01-03-17"] or var array
         datasets: [{
-            data: ["120", "118", "115", "114"],
+            data: weightArray,
             // Need array of weights that were input or var array
             fill: false,
             backgroundColor: "gold",
@@ -400,6 +423,8 @@ $("#signup-new-user").on("click", function(event) {
         title: {
             display: true,
             text: "Your Weight Loss Over Time",
+            fontSize: 18,
+            fontColor: "#FFA500",
         },
         legend: {
             display: false,
@@ -407,7 +432,7 @@ $("#signup-new-user").on("click", function(event) {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: false
                 }
             }]
         }
@@ -425,5 +450,6 @@ $("#signup-new-user").on("click", function(event) {
 
 
     })
+  }, delay);
 };
 
