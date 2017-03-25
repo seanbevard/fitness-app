@@ -1,3 +1,4 @@
+/*Quote of the day CSS */
 #quote-item {
 	font-size: 1.5em;
 	font-weight: bold;
@@ -11,6 +12,14 @@
 #quote-logo {
 	z-index:50;
 	font-size:0.9em;
+}
+/*Map CSS*/
+.top-buffer{ margin-top: 50px;}
+.mid-buffer{ margin-top: 150px;}
+#map_canvas{
+	width:400px;
+	height:400px;
+	outline: 1px solid red;
 }
 
 /*weather related css --SB
@@ -30,7 +39,13 @@ overflow: auto;
 	font-size:1em;
 }
 
-.panel.panel-primary { 
+
+.view {
+    height: 100%;
+}
+
+
+.panel>.panel-primary { 
 
 border-color: gold;
 }
@@ -44,4 +59,60 @@ border-color: gold;
 background-color: gold;
 color: purple;
 border-color: gold;
+}
+
+/* Css for indextemp.html aka login page */
+#sign-in-header {
+text-align: center;
+font-size: 2.5em;
+padding-bottom:20px;
+}
+
+.login-container {
+ padding: 20px;
+ max-width: 250em;
+ max-height: 500em;
+ width: 100%; 
+ border-radius: 10px;
+ background-color: gold;
+ margin: 0 auto;
+ overflow: hidden;
+
+}
+
+#submit-container {
+padding-top:30px;
+}
+
+#signin-body, #signup-body {
+	background-color: purple;
+	font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: url('assets/fitnessapp-background.jpeg');
+	background-size: 1280px 720px;
+	background-repeat: repeat;
+	background-attachment: fixed;
+}
+
+#newuser-container {
+	padding-top: 25px;
+}
+
+#signin-title, #signup-title {
+	text-align: center;
+	background: transparent;
+}
+
+#signin-title {
+	color: orange;
+}
+
+#signup-title {
+	color: yellow;
+}
+
+
+#signup-head {
+	text-align: center;
+	font-size:2.5em;
+	color: yellow;
 }

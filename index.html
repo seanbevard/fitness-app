@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/stylesheet.css" type="text/css">
+<link rel="stylesheet" href="style.css" type="text/css">
 <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
 <script type="text/javascript" src="moment.js"></script>
 <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
@@ -21,18 +21,24 @@
 
 </head>
 
-<body>
-<div class="row top-buffer">
+<body id="signin-body">
+
+<div class="jumbotron" id="signin-title">
+<h1>Your Wellness Dashboard</h1>
+</div>
+
 <div class="col-lg-4  col-md-offset-4 row-md-offset-3">
+<div class="top-buffer login-container">
 
 <form class="form-signin">
 
-
+<h1 id="sign-in-header">Sign in here!</h1>
 <label class="sr-only" >Input Username</label>
 <input class="form-control" id="userName" autofocus="" required="" type="userName" placeholder="UserName">
 
-
-<button class="btn btn-lg btn-primary btn-block" id="submit-username" type="submit">Sign in</button>
+<div id="submit-container">
+<button class="btn btn-lg btn-success btn-block" id="submit-username" type="submit">Sign in</button>
+</div>
 
 </form>
 
@@ -42,14 +48,10 @@
 
 <div class="row mid-buffer">
 <div class="col-lg-4 col-md-offset-4 row-md-offset-5">
-
 <form class="form-signin">
-
-
-
-
-<button class="btn btn-lg btn-primary btn-block" id="signup-new-user" type="submit"  >Not a registered user? Signup</button>
-
+<div id="newuser-container">
+<button class="btn btn-lg btn-caution btn-block" id="signup-new-user" type="submit"  >Not a registered user? Signup</button>
+</div>
 </form>
 
 </div> <!-- /container -->

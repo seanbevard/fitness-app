@@ -42,7 +42,6 @@ var myweighinno;
 var flag=0;
 
 
-
 //creating a variable to store today's date:
 var todaysDate = Date.now();
 $("#logData").append(moment(todaysDate).format("MM/DD/YY"));
@@ -52,7 +51,12 @@ dataRef.ref().child('users').on("child_added", function(snapshot) {
     var childData = snapshot.val();
     currentusernames.push(childData.username);
     currentdata.push(childData);
+
+    
+   // weighindata.push(childata.weighin);
+
   //  weighindata.push(childData.weighin);
+
     
 });
     
@@ -78,6 +82,7 @@ dataRef.ref('users/'+localStorage.getItem("username")+'/weighinno').on("value", 
 });
 
  
+
 //Retrieving data from database
    function createinfofortyler()
     {var username=  localStorage.getItem("username");
@@ -371,8 +376,7 @@ $("#signup-new-user").on("click", function(event) {
 
 });
 
-    // Create dataset for chart from variables
-
+  
     var chartData = {
         labels: ["01-02-17", "01-03-17", "01-05-17", "01-07-17"],
         // Need an array returned of each date weight was logged. i.e. 
@@ -418,5 +422,8 @@ $("#signup-new-user").on("click", function(event) {
         type: 'line',
         data: chartData,
         options: options
+
+
     })
 };
+
