@@ -273,7 +273,11 @@ function writeUserData() {
 $("#submit-button").on("click", function(event) {
       event.preventDefault();
     if($('#name').val()=='')
-    {alert("Username cannot be Empty");
+    {var message = "That is empty! Please enter a username";
+      $('#signup-alertModal').find('.modal-body p').text(message);
+      $('#signup-alertModal').modal('show') 
+
+      // alert("Username cannot be Empty");
         return false;}
         
     
@@ -329,9 +333,12 @@ $("#submit-button").on("click", function(event) {
         window.open("index.html");
         }
     else
-        {   
-        alert("user already exists....please use a different username");  
-        location.reload(true);
+        {  
+      var message = 'The user already exists, please use a different name.';
+      $('#signup-alertModal').find('.modal-body p').text(message);
+      $('#signup-alertModal').modal('show') 
+        // alert("user already exists....please use a different username");  
+        // location.reload(true);
         }
 });
 
@@ -370,7 +377,7 @@ $("#submit-username").on("click", function(event) {
     if(validateUsername($('#userName').val()))
       // Modal script for username not found
         
-        $('#alertModal').modal('show');
+        $('#signin-alertModal').modal('show');
         
     
     else
