@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeV_uij9_J8EaWY1cm03WuRC9SfXFPpK4"></script>
     <!-- CDN for charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <!-- Main JS file -->
@@ -34,7 +35,7 @@
             <div id='zipcode'></div>
         </div>
         <form class="form-inline">
-        <p id="logData">Log Data For: </p>
+        <strong><p id="logData">Log Data For: </p></strong>
             <div class="form-group">
                 <label class="sr-only" for="weight-input">Weight</label>
                 <input type="weight" class="form-control" id="weight-input" placeholder="Weight">
@@ -96,14 +97,17 @@
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Weather?</h3>
+                            <h3 class="panel-title">Weather</h3>
                         </div>
                         <div class="panel-body" align="center" id="weather">
-                            <canvas id="weatherIcon" width="128" height="128"></canvas>
+                            <div id="map_canvas1"></div>
+                            <div id="weatherdetails"><canvas id="weatherIcon" width="130" height="130"></canvas></div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Begins area for chart -->
             <div id="chart-area">
             <div class="panel panel-primary" style="border-color: gold">
@@ -118,6 +122,9 @@
 
             </div>
         </div>
+
+
+    <script type="text/javascript" src="ajax.js"></script>
 
 </body>
 

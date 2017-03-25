@@ -1,4 +1,5 @@
 window.onload = function() {
+
 var config = {
     apiKey: "AIzaSyBH2i1Tv_Ih6bnw1WTPICvUWP8HhtF3RFo",
     authDomain: "fitnessapp-b2272.firebaseapp.com",
@@ -37,9 +38,7 @@ var usersLatitude;
 var usersState;
 var usersChanceOfRain;
 var weighindata=[];
-
-dbRef = firebase("https://fitnessapp-b2272.firebaseio.com");
-console.log(dbRef.child('weight'));
+var myweighinno;
 
 
 //creating a variable to store today's date:
@@ -48,31 +47,42 @@ $("#logData").append(moment(todaysDate).format("MM/DD/YY"));
 //Updating current users
 
 dataRef.ref().child('users').on("child_added", function(snapshot) {
-    childData = snapshot.val();
+    var childData = snapshot.val();
     currentusernames.push(childData.username);
-    weighinno.push(childData.weighinno);
     currentdata.push(childData);
+
     
    // weighindata.push(childata.weighin);
+
+  //  weighindata.push(childData.weighin);
+
     
 });
     
 dataRef.ref().child('users/'+localStorage.getItem("username")+'/weighin').on("child_added", function(snapshot) {
-   childData = snapshot.val();
+   var childData = snapshot.val();
     weighindata.push(childData);   
+});
+    
+    
+dataRef.ref('users/'+localStorage.getItem("username")+'/weighinno').on("value", function(snapshot) {
+   var childData = snapshot.val();
+   console.log("childata is : " + childData);
+  myweighinno=(childData);
 });
 
  
-// //Retrieving data from database
-//    function createinfofortyler()
-//     {var username=  localStorage.getItem("username");
-//   //JSON.parse()
-//       for(i=0;i<=weighinno[currentusernames.indexOf(username)];i++)
-//       {
-//           var t =JSON.stringify(weighindata[i]);
-//          console.log(t);
-//       }
-//     }
+
+//Retrieving data from database
+   function createinfofortyler()
+    {var username=  localStorage.getItem("username");
+  //JSON.parse()
+      for(i=0;i<myweighinno;i++)
+      {
+          var t =JSON.stringify(weighindata[i]);
+         console.log(t);
+      }
+    }
 
 
 function writeUserLog() {
@@ -80,7 +90,7 @@ function writeUserLog() {
   var username=  localStorage.getItem("username");
   
   //var myweighinno=localStorage.getItem("weighinno");
-    var myweighinno=weighinno[currentusernames.indexOf(username)];
+   // var myweighinno=weighinno[currentusernames.indexOf(username)];
    
     console.log(myweighinno);
      myweighinno++;
@@ -106,7 +116,12 @@ function writeUserLog() {
 
  }); 
                         }
-    
+  //for (i=1; i<myweighinno; i++) {
+ // console.log (weighindate[i].weight)
+  //}
+  
+     
+
  $("#submit-weighin").on("click", function(event) {
     
     event.preventDefault();
@@ -117,7 +132,15 @@ function writeUserLog() {
       document.getElementById("duration-input").value="";
     //   $('#weight-input').val("");
      //  $('# activity-input').val("");
-     //  $('#duration-input').val("") ;           
+     //  $('#duration-input').val("") ;   
+    var tempDate = weighindata[(myweighinno-1)].date;
+    var currentDate = moment.unix(tempDate).format("ddd");
+    console.log (tempDate);
+    console.log (currentDate);
+    
+    for (i=1; i < myweighinno; i++) {
+    $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[i].weight + "</td><td>"  + weighindata[i].activity + "</td><td>"+ weighindata[i].duration + "</td></tr>");
+    }      
 
 });   
    
@@ -253,7 +276,7 @@ $("#submit-button").on("click", function(event) {
     if (validateUsername($('#name').val()))
         {
         writeUserData();
-        window.open("indextemp.html");
+        window.open("index.html");
         }
     else
         {   
@@ -324,103 +347,7 @@ $("#signup-new-user").on("click", function(event) {
 
 });
 
-
-
-    // Logic for sports quote API
-    var queryURL = "http://quotes.rest/qod.json?category=sports"
-        // Performing our AJAX GET request
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        // After the data comes back from the API
-        .done(function(response) {
-            // Storing an array of results in the results variable
-            var results = response.contents;
-            // Get the quote data from the object
-            var data = results.quotes[0];
-
-            // Check the object returned
-            console.log(data);
-
-
-            // Creating a div with the class "item"
-            var quoteDiv = $("<div class='item'>");
-
-            // Storing the result item's rating
-            var quote = data.quote;
-            var author = data.author;
-
-            // Creating a paragraph tag with the result item's rating
-            var p = $("<p id='quote-item'>").text(quote + " - " + author);
-
-
-            // Appending the paragraph we created 
-            quoteDiv.append(p);
-
-
-            // Prepending the quoteDiv to the display
-            $("#quote-display").prepend(quoteDiv);
-
-        });
-
-
-    //adding ajax code to get location from IP address -SB
-    //also now pulling latitude/longitude to pass it to DarkSky (weather) -SB
-    $.ajax({
-        url: 'http://freegeoip.net/json/',
-        async: false,
-        method: 'GET'
-    }).done(function(location) {
-        usersZipCode = location.zip_code;
-        usersCity = location.city;
-        usersState = location.region_code;
-        usersLongitude = location.longitude;
-        usersLatitude = location.latitude;
-    });
-
-    //ajax call for weather -SB
-    $.ajax({
-            url: "https://api.darksky.net/forecast/" + "8c7c81eec838047ee423275f144c553b" + "/" + usersLatitude + "," + usersLongitude,
-            async: false,
-            method: "GET"
-        })
-        .done(function(response) {
-            //storing chance of rain to use elsewhere -SB
-            usersChanceOfRain = response.currently.precipProbability * 100;
-            $("#weather").append("<h3>Current Weather In<br> " + usersCity + ", " + usersState + "</h1>");
-            $("#weather").append("Current Conditions: " + response.currently.summary + "<br>");
-            $("#weather").append("Temperature: " + Math.round(response.currently.temperature) + "°F<br>");
-            $("#weather").append("Chance of rain: " + usersChanceOfRain + "%");
-
-            //code for weather icons -SB
-            var skycons = new Skycons({ "color": "#222" });
-            //alert(currentWeatherIcon);
-            skycons.add("weatherIcon", response.currently.icon);
-
-           // $("#weather").prepend("<canvas id='" + response.currently.icon + "'width='128' height='128'></canvas>");
-            skycons.play();
-        });
-
-        console.log(startWeight);
-    var weightArray = new Array();
-    function createinfofortyler()
-    {var username=  localStorage.getItem("username");
-  //JSON.parse()
-      for(i=0;i<=weighinno[currentusernames.indexOf(username)];i++)
-      {
-          var t = Number(JSON.stringify(weighindata[i].weight));
-         console.log(t);
-
-         
-         weightArray.push(t);
-         console.log(weightArray);
-      }
-
-    }
-    // Create dataset for chart from variables
-    createinfofortyler();
-    console.log(weightArray);    
+  
     var chartData = {
         labels: ["01-02-17", "01-03-17", "01-05-17", "01-07-17"],
         // Need an array returned of each date weight was logged. i.e. 
@@ -466,6 +393,8 @@ $("#signup-new-user").on("click", function(event) {
         type: 'line',
         data: chartData,
         options: options
-    });
+
+
+    })
 };
 

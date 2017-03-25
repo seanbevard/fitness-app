@@ -1,3 +1,4 @@
+/*Quote of the day CSS */
 #quote-item {
 	font-size: 1.5em;
 	font-weight: bold;
@@ -11,6 +12,24 @@
 #quote-logo {
 	z-index:50;
 	font-size:0.9em;
+}
+/*Map CSS*/
+.top-buffer{ margin-top: 50px;}
+.mid-buffer{ margin-top: 150px;}
+#map_canvas{
+	width:400px;
+	height:400px;
+	outline: 1px solid red;
+}
+
+/*weather related css --SB
+*/
+#map_canvas1{
+overflow: auto;
+}
+
+#weatherIcon{
+	float:left;
 }
 
 #logo-text {
@@ -62,9 +81,25 @@ padding-bottom:20px;
 }
 
 #submit-container {
-padding-top:25px;
+padding-top:30px;
 }
 
 #signin-body {
 	background-color: purple;
+	font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: url('assets/fitnessapp-background.jpeg');
+	background-size: 1280px 720px;
+	background-repeat: repeat;
+	background-attachment: fixed;
 }
+
+#newuser-container {
+	padding-top: 25px;
+}
+
+#signin-title {
+	text-align: center;
+	background: transparent;
+	color: orange;
+}
+
