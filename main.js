@@ -223,7 +223,7 @@ function writeUserData() {
              
              1:              {
                  weight: $('#weight-entry').val(),
-                 date  : '01-07-2017',
+                 date  : todaysDate,
                  activity: '',
                  duration:0,
                  
