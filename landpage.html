@@ -38,7 +38,9 @@
         <strong><p id="logData">Log Data For: </p></strong>
             <div class="form-group">
                 <label class="sr-only" for="weight-input">Weight</label>
-                <input type="weight" class="form-control" id="weight-input" placeholder="Weight">
+               <input type="text" 
+onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" class="form-control" id="weight-input" placeholder="Weight">
+
             </div>
             <div class="form-group">
                 <label class="sr-only" for="activity-input">Activity</label>
@@ -46,7 +48,8 @@
             </div>
             <div class="form-group">
                 <label class="sr-only" for="duration-input">Duration</label>
-                <input type="duration" class="form-control" id="duration-input" placeholder="Duration">
+                <input type="text" 
+onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" class="form-control" id="duration-input" placeholder="Duration">
             </div>
             <button type="submit" class="btn btn-default" id="submit-weighin">Submit</button>
         </form>
