@@ -18,7 +18,8 @@ $.ajax({
         var quoteDiv = $("<div class='item'>");
 
         // Storing the result item's rating
-        var quote = data.quote;
+        var quote
+ = data.quote;
         var author = data.author;
 
         // Creating a paragraph tag with the result item's rating
@@ -62,7 +63,7 @@ $.ajax({
             $("#weatherdetails").append("Chance of rain: " + usersChanceOfRain + "%<br>");
 
             //code for weather icons -SB
-            var skycons = new Skycons({ "color": "#222" });
+            var skycons = new Skycons({ "color": "#530b6c" });
             skycons.add("weatherIcon", response.currently.icon);
             skycons.play();
         });

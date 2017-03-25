@@ -1,134 +1,153 @@
+/*google fonts -SB*/
+
+body, .panel, h1 {
+    font-family: 'Titillium Web';
+}
+
+
 /*Quote of the day CSS */
+
 #quote-item {
-	font-size: 1.25em;
-	font-weight: bold;
+    font-size: 1.25em;
+    font-weight: bold;
 }
 
 .page-header>h1 {
-	font-size: 4em;
+    font-family: 'Titillium Web';
+    font-size: 4em;
 }
 
 #chart-area {
-	width:750px;
-	height:250px;
+    width: 750px;
+    height: 250px;
 }
 
 #quote-logo {
-	z-index:50;
-	font-size:0.9em;
+    z-index: 50;
+    font-size: 0.9em;
 }
+
+
 /*Map CSS*/
-.top-buffer{ margin-top: 50px;}
-.mid-buffer{ margin-top: 150px;}
-#map_canvas{
-	width:400px;
-	height:400px;
-	outline: 1px solid red;
+
+.top-buffer {
+    margin-top: 50px;
 }
+
+.mid-buffer {
+    margin-top: 150px;
+}
+
+#map_canvas {
+    width: 400px;
+    height: 400px;
+    outline: 1px solid red;
+}
+
 
 /*weather related css --SB
 */
-#map_canvas1{
-overflow: auto;
+
+#map_canvas1 {
+    overflow: hidden;
 }
 
-#weatherIcon{
-	float:left;
+#weatherIcon {
+    float: left;
 }
 
 #logo-text {
-	color: #9fcc25; 
-	margin-left: 4px; 
-	vertical-align: middle;
-	font-size:1em;
+    color: #9fcc25;
+    margin-left: 4px;
+    vertical-align: middle;
+    font-size: 1em;
 }
-
 
 .view {
     height: 100%;
 }
 
-
-.panel>.panel-primary { 
-
-border-color: gold;
+.panel>.panel-primary {
+    border-color: gold;
 }
+
 .panel-primary>.panel-heading {
-background-color: gold;
-color: purple;
-border-color: gold;
+    background-color: gold;
+    color: purple;
+    border-color: gold;
+}
 
-}
 .panel-default>.panel-heading {
-background-color: gold;
-color: purple;
-border-color: gold;
+    background-color: gold;
+    color: purple;
+    border-color: gold;
 }
+
 
 /* Css for indextemp.html aka login page */
+
 #sign-in-header {
-text-align: center;
-font-size: 2.5em;
-padding-bottom:20px;
+    text-align: center;
+    font-size: 2.5em;
+    padding-bottom: 20px;
 }
 
 .login-container {
- padding: 20px;
- max-width: 250em;
- max-height: 500em;
- width: 100%; 
- border-radius: 10px;
- background-color: gold;
- margin: 0 auto;
- overflow: hidden;
-
+    padding: 20px;
+    max-width: 250em;
+    max-height: 500em;
+    width: 100%;
+    border-radius: 10px;
+    background-color: gold;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 #submit-container {
-padding-top:30px;
+    padding-top: 30px;
 }
 
 body {
-	font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
-	background: url('assets/fitnessapp-background.jpeg');
-	background-size: 1280px 720px;
-	background-repeat: repeat;
-	background-attachment: fixed;
+    font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: url('assets/fitnessapp-background.jpeg');
+    background-size: 1280px 720px;
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 #landing-body {
-	color:orange;
+    color: orange;
 }
 
 #newuser-container {
-	padding-top: 25px;
+    padding-top: 25px;
 }
 
-#signin-title, #signup-title {
-	text-align: center;
-	background: transparent;
+#signin-title,
+#signup-title {
+    text-align: center;
+    background: transparent;
 }
 
 #signin-title {
-	color: orange;
+    color: orange;
 }
 
 #signup-title {
-	color: yellow;
+    color: yellow;
 }
 
-
 #signup-head {
-	text-align: center;
-	font-size:2.5em;
-	color: yellow;
+    text-align: center;
+    font-size: 2.5em;
+    color: yellow;
 }
 
 #form-panel {
-	background: orange;
+    background: orange;
 }
 
 .activityRow {
-    display:inline-block;
-    padding-left:14px;
+    display: inline-block;
+    padding-left: 14px;
 }
