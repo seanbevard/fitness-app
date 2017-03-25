@@ -73,8 +73,11 @@ dataRef.ref('users/'+localStorage.getItem("username")+'/weighinno').on("value", 
     if (flag==0)
      printTable();
     else
-    {     var tempDate = weighindata[myweighinno-1].date;
-          var currentDate = moment.unix(tempDate).format("ddd");
+    {     
+    var tempDate = weighindata[i].date;
+   var currentDate = moment(tempDate).format("ddd");
+   console.log (tempDate);
+   console.log (currentDate);
         $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[myweighinno-1].weight + "</td><td>"  + weighindata[myweighinno-1].activity + "</td><td>"+ weighindata[myweighinno-1].duration + "</td></tr>");}
 });
 
@@ -142,8 +145,8 @@ function writeUserLog() {
    
    
    for (i=1; i < myweighinno; i++) {
-        var tempDate = weighindata[i].date;
-   var currentDate = moment.unix(tempDate).format("ddd");
+    var tempDate = weighindata[i].date;
+   var currentDate = moment(tempDate).format("ddd");
    console.log (tempDate);
    console.log (currentDate);
    $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[i].weight + "</td><td>"  + weighindata[i].activity + "</td><td>"+ weighindata[i].duration + "</td></tr>");
@@ -225,7 +228,7 @@ function writeUserData() {
              
              1:              {
                  weight: $('#weight-entry').val(),
-                 date  : '01-07-2017',
+                 date  : todaysDate,
                  activity: '',
                  duration:0,
                  
