@@ -4,7 +4,9 @@ body, .panel, h1 {
     font-family: 'Titillium Web';
 }
 
-
+#weatherdetails{
+    color:#530b6c;
+}
 /*Quote of the day CSS */
 
 #quote-item {
@@ -108,7 +110,6 @@ body, .panel, h1 {
 }
 
 body {
-    font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: url('assets/fitnessapp-background.jpeg');
     background-size: 1280px 720px;
     background-repeat: repeat;
