@@ -154,19 +154,19 @@ var weightNumer
     var tempDate = weighindata[i].date;
    var currentDate = moment(tempDate).format("ddd");
    var placeDate = moment(tempDate).format("MM-DD-YY");
-   console.log(weighindata);
-   console.log (tempDate);
-   console.log (currentDate);
-   console.log (placeDate);
+   // console.log(weighindata);
+   // console.log (tempDate);
+   // console.log (currentDate);
+   // console.log (placeDate);
 
    // weightArray = [parseInt(weighindata[0].weight)];
-   console.log(weighindata[i].weight);
+   // console.log(weighindata[i].weight);
    weightNumber = parseInt(weighindata[i].weight);
    weightArray.push(weightNumber);
-   console.log(weightArray);
+   // console.log(weightArray);
 
    dateArray.push(placeDate);
-   console.log(dateArray);
+   // console.log(dateArray);
 
    $("#week-stats-table > tbody").append("<tr><td>" + currentDate + "</td><td>" + weighindata[i].weight + "</td><td>"  + weighindata[i].activity + "</td><td>"+ weighindata[i].duration + "</td></tr>");
    }
